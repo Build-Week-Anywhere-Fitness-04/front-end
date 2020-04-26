@@ -6,6 +6,7 @@ import Login from "./Login";
 const MainApp = () => {
   return (
     <div>
+      
       <Route exact path="/signup">
         <SignUp />
       </Route>
