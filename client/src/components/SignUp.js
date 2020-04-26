@@ -38,6 +38,9 @@ const signUpSchema = yup.object().shape({
     .string()
     .email()
     .required('Email is required'),
+  phoneNumber: yup
+    .string()
+    .min(9, 'Phone number is optional'),
   password: yup
     .string()
     .min(6, 'Password must be at least 6 characters.')
@@ -126,23 +129,23 @@ function SignUp() {
           <div className='errors'></div>
 
           <label>First Name:&nbsp;
-          <input onChange={onInputChange} name='firstName' type='text' /></label>
+          <input onChange={onInputChange} name='firstName' type='text' placeholder='First name' /></label>
           <div className='errors'>{signUpErrors.firstName}</div>
 
           <label>Last Name:&nbsp;
-          <input onChange={onInputChange} name='lastName' type='text' /></label>
+          <input onChange={onInputChange} name='lastName' type='text' placeholder='Last name' /></label>
           <div className='errors'>{signUpErrors.lastName}</div>
               
           <label>Email:&nbsp;
-          <input onChange={onInputChange} name='email' type='email' /></label>
+          <input onChange={onInputChange} name='email' type='email' placeholder='john@doe.com' /></label>
           <div className='errors'>{signUpErrors.email}</div>
 
           <label>Phone number (optional):&nbsp;
-          <input onChange={onInputChange} name='phoneNumber' type='text' /></label>
+          <input onChange={onInputChange} name='phoneNumber' type='text' placeholder='555-555-5555' /></label>
           
           
           <label>Password:&nbsp;
-          <input onChange={onInputChange} name='password' type='password' /></label>
+          <input onChange={onInputChange} name='password' type='password' placeholder='password' /></label>
           <div className='errors'>{signUpErrors.password}</div>
 
           <label>Instructor or Client:&nbsp;
