@@ -1,6 +1,6 @@
 // REACT I only
 import React, {useState, useEffect} from 'react'
-
+import { Link } from "react-router-dom";
 import Recaptcha from 'react-recaptcha'
 
 import * as yup from 'yup'
@@ -13,6 +13,7 @@ const initialSignUpValues = {
   firstName: '',
   lastName: '',
   email: '',
+  phoneNumber: '',
   password: '',
   instructorOrClient: '',
 }
@@ -21,9 +22,12 @@ const initialSignUpErrors = {
   firstName: '',
   lastName: '',
   email: '',
+  phoneNumber: '',
   password: '',
   instructorOrClient: '',
 }
+
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const signUpSchema = yup.object().shape({
   firstName: yup
@@ -40,7 +44,7 @@ const signUpSchema = yup.object().shape({
     .required('Email is required'),
   phoneNumber: yup
     .string()
-    .min(9, 'Phone number is optional'),
+    .matches(phoneRegExp, 'Phone number is not valid'),
   password: yup
     .string()
     .min(6, 'Password must be at least 6 characters.')
@@ -124,7 +128,7 @@ function SignUp() {
       <Styles>
         
         <form>
-          <h1>Sign Up page</h1>
+          <h1>Sign Up</h1>
 
           <div className='errors'></div>
 
@@ -142,6 +146,7 @@ function SignUp() {
 
           <label>Phone number (optional):&nbsp;
           <input onChange={onInputChange} name='phoneNumber' type='text' placeholder='555-555-5555' /></label>
+          <div className='errors'>{signUpErrors.phoneNumber}</div>
           
           
           <label>Password:&nbsp;
@@ -150,7 +155,6 @@ function SignUp() {
 
           <label>Instructor or Client:&nbsp;
             <select
-             
               onChange={onInputChange}
               name='instructorOrClient'
             >
@@ -171,7 +175,10 @@ function SignUp() {
             verifyCallback={verifyCallback}
           />
         
+          <h5>Already have an account? <Link to='/login'>Login here.</Link></h5>
         </form>
+
+        
       </Styles>
     </div>
   )

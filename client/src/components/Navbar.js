@@ -8,7 +8,7 @@ function Navbar() {
           
         <h1>AnyWhere Fitness</h1>
         <div>
-          <Link to='/'>Home</Link>
+          
           <Link to='/login'>Login</Link>
           <Link to='/signup'>Sign Up</Link>
         </div>
