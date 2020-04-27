@@ -1,172 +1,220 @@
 // REACT I only
-import React, {useState, useEffect} from 'react'
-import { Link } from "react-router-dom";
-import Recaptcha from 'react-recaptcha'
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import Recaptcha from "react-recaptcha";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-import * as yup from 'yup'
+import * as yup from "yup";
 
-import { Styles } from './Styles'
+import { Styles } from "./Styles";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const initialSignUpValues = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  phoneNumber: '',
-  password: '',
-  instructorOrClient: '',
-}
+  firstName: "",
+  lastName: "",
+  email: "",
+  phoneNumber: "",
+  password: "",
+  instructorOrClient: "",
+};
 
 const initialSignUpErrors = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  phoneNumber: '',
-  password: '',
-  instructorOrClient: '',
-}
+  firstName: "",
+  lastName: "",
+  email: "",
+  phoneNumber: "",
+  password: "",
+  instructorOrClient: "",
+};
 
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const signUpSchema = yup.object().shape({
   firstName: yup
     .string()
-    .min(2, 'Need at least 2 characters.')
-    .required('First name is required'),
+    .min(2, "Need at least 2 characters.")
+    .required("First name is required"),
   lastName: yup
     .string()
-    .min(2, 'Need at least 2 characters')
-    .required('Last name is required'),
-  email: yup
-    .string()
-    .email()
-    .required('Email is required'),
-  phoneNumber: yup
-    .string()
-    .matches(phoneRegExp, 'Phone number is not valid'),
+    .min(2, "Need at least 2 characters")
+    .required("Last name is required"),
+  email: yup.string().email().required("Email is required"),
+  phoneNumber: yup.string().matches(phoneRegExp, "Phone number is not valid"),
   password: yup
     .string()
-    .min(6, 'Password must be at least 6 characters.')
-    .required('Password is required'),
+    .min(6, "Password must be at least 6 characters.")
+    .required("Password is required"),
   instructorOrClient: yup
     .string()
-    .matches(/(instructor|client)/, 'Either instructor or client.')
-    .required('Please select instructor or client.')
-})
-
-
+    .matches(/(instructor|client)/, "Either instructor or client.")
+    .required("Please select instructor or client."),
+});
 
 function SignUp() {
+  const [isVerified, setIsVerified] = useState(false);
 
-  const [isVerified, setIsVerified] = useState(false)
+  const [signUpValues, setSignUpValues] = useState(initialSignUpValues);
 
-  const [signUpValues, setSignUpValues] = useState(initialSignUpValues)
+  const [signUpErrors, setSignUpErrors] = useState(initialSignUpErrors);
 
-  const [signUpErrors, setSignUpErrors] = useState(initialSignUpErrors)
-
-  const [formDisabled, setFormDisabled] = useState(true)
+  const [formDisabled, setFormDisabled] = useState(true);
+  const history = useHistory();
 
   const recaptchaLoaded = () => {
-    console.log('captcha loaded')
-  }
+    console.log("captcha loaded");
+  };
 
-  const onSubmit = e => {
-    e.preventDefault()
-  
+  // POST / api / auth / instructors / register
+  // POST / api / auth / clients / register
+  // instructorOrClient
+  const onSubmit = (e) => {
+    e.preventDefault();
+
     if (isVerified) {
-      alert('you have successfully signed up')
+      // alert("you have successfully signed up");
+      if (signUpValues.instructorOrClient === "instructor") {
+        axiosWithAuth()
+          .post("/api/auth/instructor")
+          .then((res) => {
+            console.log(res);
+            history.push("/admin-account");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        axiosWithAuth()
+          .post("/api/auth/instructor")
+          .then((res) => {
+            console.log(res);
+            history.push("/account");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
       // sign up method goes here
     } else {
-      alert('Please verify that you are a human')
+      alert("Please verify that you are a human");
     }
-  }
+  };
 
   const verifyCallback = (response) => {
     if (response) {
-      setIsVerified(true)
+      setIsVerified(true);
     }
-  }
+  };
 
-  const onInputChange = e => {
-    const name = e.target.name
-    const value = e.target.value
+  const onInputChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
     yup
       .reach(signUpSchema, name)
       .validate(value)
-      .then(valid => {
+      .then((valid) => {
         setSignUpErrors({
           ...signUpErrors,
-          [name]: '',
-        })
+          [name]: "",
+        });
       })
-      .catch(err => {
-        
+      .catch((err) => {
         setSignUpErrors({
           ...signUpErrors,
-          [name]: err.errors[0]
-        })
-      })
-    
+          [name]: err.errors[0],
+        });
+      });
+
     setSignUpValues({
       ...signUpValues,
       [name]: value,
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    signUpSchema.isValid(signUpValues)
-      .then(valid => {
-        setFormDisabled(!valid)
-      })
-  }, [signUpValues])
+    signUpSchema.isValid(signUpValues).then((valid) => {
+      setFormDisabled(!valid);
+    });
+  }, [signUpValues]);
 
-  
   return (
     <div>
       <Styles>
-        
         <form>
           <h1>Sign Up</h1>
 
-          <div className='errors'></div>
+          <div className="errors"></div>
 
-          <label>First Name:&nbsp;
-          <input onChange={onInputChange} name='firstName' type='text' placeholder='First name' /></label>
-          <div className='errors'>{signUpErrors.firstName}</div>
-
-          <label>Last Name:&nbsp;
-          <input onChange={onInputChange} name='lastName' type='text' placeholder='Last name' /></label>
-          <div className='errors'>{signUpErrors.lastName}</div>
-              
-          <label>Email:&nbsp;
-          <input onChange={onInputChange} name='email' type='email' placeholder='john@doe.com' /></label>
-          <div className='errors'>{signUpErrors.email}</div>
-
-          <label>Phone number (optional):&nbsp;
-          <input onChange={onInputChange} name='phoneNumber' type='text' placeholder='555-555-5555' /></label>
-          <div className='errors'>{signUpErrors.phoneNumber}</div>
-          
-          
-          <label>Password:&nbsp;
-          <input onChange={onInputChange} name='password' type='password' placeholder='password' /></label>
-          <div className='errors'>{signUpErrors.password}</div>
-
-          <label>Instructor or Client:&nbsp;
-            <select
+          <label>
+            First Name:&nbsp;
+            <input
               onChange={onInputChange}
-              name='instructorOrClient'
-            >
-              <option defaultValue=''>Please Choose</option>
-              <option value='instructor'>Instructor</option>
-              <option value='client'>Client</option>
-            </select> 
-            
+              name="firstName"
+              type="text"
+              placeholder="First name"
+            />
           </label>
-          <div className='errors'>{signUpErrors.instructorOrClient}</div>
-          
-          <button onClick={onSubmit} disabled={formDisabled}>Sign Up</button>
+          <div className="errors">{signUpErrors.firstName}</div>
+
+          <label>
+            Last Name:&nbsp;
+            <input
+              onChange={onInputChange}
+              name="lastName"
+              type="text"
+              placeholder="Last name"
+            />
+          </label>
+          <div className="errors">{signUpErrors.lastName}</div>
+
+          <label>
+            Email:&nbsp;
+            <input
+              onChange={onInputChange}
+              name="email"
+              type="email"
+              placeholder="john@doe.com"
+            />
+          </label>
+          <div className="errors">{signUpErrors.email}</div>
+
+          <label>
+            Phone number (optional):&nbsp;
+            <input
+              onChange={onInputChange}
+              name="phoneNumber"
+              type="text"
+              placeholder="555-555-5555"
+            />
+          </label>
+          <div className="errors">{signUpErrors.phoneNumber}</div>
+
+          <label>
+            Password:&nbsp;
+            <input
+              onChange={onInputChange}
+              name="password"
+              type="password"
+              placeholder="password"
+            />
+          </label>
+          <div className="errors">{signUpErrors.password}</div>
+
+          <label>
+            Instructor or Client:&nbsp;
+            <select onChange={onInputChange} name="instructorOrClient">
+              <option defaultValue="">Please Choose</option>
+              <option value="instructor">Instructor</option>
+              <option value="client">Client</option>
+            </select>
+          </label>
+          <div className="errors">{signUpErrors.instructorOrClient}</div>
+
+          <button onClick={onSubmit} disabled={formDisabled}>
+            Sign Up
+          </button>
 
           <Recaptcha
             sitekey={API_KEY}
@@ -174,14 +222,14 @@ function SignUp() {
             onloadCallback={recaptchaLoaded}
             verifyCallback={verifyCallback}
           />
-        
-          <h5>Already have an account? <Link to='/login'>Login here.</Link></h5>
-        </form>
 
-        
+          <h5>
+            Already have an account? <Link to="/login">Login here.</Link>
+          </h5>
+        </form>
       </Styles>
     </div>
-  )
+  );
 }
 
-export default SignUp
+export default SignUp;
