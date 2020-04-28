@@ -84,7 +84,7 @@ function Login() {
         .post("/api/auth/instructors/login", loginValues)
         .then((res) => {
           localStorage.setItem("token", JSON.stringify(res.data.token));
-          history.push("/admin-account");
+          history.push("/account/instructor");
         })
         .catch((err) => {
           console.log(err);
@@ -94,7 +94,7 @@ function Login() {
         .post("/api/auth/clients/login", loginValues)
         .then((res) => {
           localStorage.setItem("token", JSON.stringify(res.data.token));
-          history.push("/account");
+          history.push("/account/client");
         })
         .catch((err) => {
           console.log(err);
