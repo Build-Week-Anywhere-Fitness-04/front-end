@@ -91,7 +91,7 @@ function SignUp() {
         password,
         instructorOrClient,
       } = signUpValues;
-      // alert("you have successfully signed up");
+
       const values = {
         username,
         password,
@@ -104,6 +104,7 @@ function SignUp() {
         axiosWithAuth()
           .post("/api/auth/instructors/register", values)
           .then((res) => {
+            console.log(res);
             history.push("/login");
           })
           .catch((err) => {

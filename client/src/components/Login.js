@@ -83,6 +83,7 @@ function Login() {
       axiosWithAuth()
         .post("/api/auth/instructors/login", loginValues)
         .then((res) => {
+          console.log(res);
           localStorage.setItem("token", JSON.stringify(res.data.token));
           history.push("/account/instructor");
         })
