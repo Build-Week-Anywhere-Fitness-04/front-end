@@ -11,7 +11,7 @@ function Navbar() {
         <div className='container'>
         <h1>AnyWhere Fitness</h1>
           <nav>
-            <Link to='/login'>Home</Link>
+            <a href='https://lucid-morse-c45b1a.netlify.app/'>Home</a>
           </nav>
         </div>
 
