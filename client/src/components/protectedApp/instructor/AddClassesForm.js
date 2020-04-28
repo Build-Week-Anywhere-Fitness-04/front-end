@@ -8,6 +8,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
+  KeyboardDatePicker,
 } from "@material-ui/pickers";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 
@@ -38,12 +39,22 @@ const validationSchema = yup.object().shape({
 const getTime = new Date().toLocaleDateString();
 
 const AddClassesForm = () => {
-  const [selectedDate, setSelectedDate] = useState(getTime);
+  const [selectedTime, setSelectedTime] = useState(getTime);
+  const [selectedDate, setSelectedDate] = useState(
+    new Date("2014-08-18T21:11:54")
+  );
   const [img, setImg] = useState("");
   const classes = useStyles();
 
+  const handleTimeChange = (date) => {
+    //  console.log(newTime);
+
+    setSelectedTime(date);
+  };
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    setSelectedDate(date.toLocaleDateString());
+    //  console.log(date.toLocaleDateString());
+    //   new Date().getDate()
   };
 
   const uploadImage = (e) => {
@@ -75,8 +86,8 @@ const AddClassesForm = () => {
           max_class_size: "",
           description: "",
         }}
-        validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
+          const datesFormatted = `${selectedDate} ${selectedTime.toLocaleTimeString()}`;
           const {
             name,
             type,
@@ -90,7 +101,7 @@ const AddClassesForm = () => {
           const newValues = {
             name,
             type,
-            start_time: selectedDate.toString(),
+            start_time: datesFormatted,
             intensity,
             price,
             duration,
@@ -184,10 +195,22 @@ const AddClassesForm = () => {
                 margin="normal"
                 id="time-picker"
                 label="class start time"
+                value={selectedTime}
+                onChange={handleTimeChange}
+                KeyboardButtonProps={{
+                  "aria-label": "change time",
+                }}
+              />
+
+              <KeyboardDatePicker
+                margin="normal"
+                id="date-picker-dialog"
+                label="class date"
+                format="MM/dd/yyyy"
                 value={selectedDate}
                 onChange={handleDateChange}
                 KeyboardButtonProps={{
-                  "aria-label": "change time",
+                  "aria-label": "change date",
                 }}
               />
             </MuiPickersUtilsProvider>

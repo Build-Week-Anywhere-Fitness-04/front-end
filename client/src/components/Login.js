@@ -1,5 +1,6 @@
 // REACT I only
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Styles } from "./Styles";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -35,6 +36,7 @@ const loginSchema = yup.object().shape({
 
 function Login() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [loginValues, setLoginValues] = useState(initialLoginValues);
   const [loginErrors, setLoginErrors] = useState(initialLoginErrors);
 
@@ -84,6 +86,7 @@ function Login() {
         .post("/api/auth/instructors/login", loginValues)
         .then((res) => {
           console.log(res);
+          dispatch({ type: "SAVE_USER_ID", payload: res.data.id });
           localStorage.setItem("token", JSON.stringify(res.data.token));
           history.push("/account/instructor");
         })
