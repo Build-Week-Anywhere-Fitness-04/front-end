@@ -1,7 +1,7 @@
 import React from "react";
 import AddClassesForm from "./AddClassesForm";
 
-const InstructorContent = () => {
+const InstructorContent = ({ setUpdateData }) => {
   return (
     <div className="Content">
       <h3>Schedule</h3>
@@ -9,7 +9,7 @@ const InstructorContent = () => {
         <p>Looks like you don't have any classes yet</p>
         <p>let's add some.</p>
       </div>
-      <AddClassesForm />
+      <AddClassesForm setUpdateData={setUpdateData} />
     </div>
   );
 };

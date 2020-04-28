@@ -9,22 +9,59 @@ export const userReducer = (state = initialValues, action) => {
         ...state,
         instructorID: action.payload,
       };
-    //  case "POSTING_DATA":
-    //    return {
-    //      ...state,
-    //      loading: true,
-    //    };
-    //  case "SAVING_POSTED_DATA":
-    //    return {
-    //      ...state,
-    //      loading: false,
-    //      instructorClass: action.payload,
-    //    };
-    //  case "POSTED_ERROR":
-    //    return {
-    //      ...state,
-    //      loading: false,
-    //    };
+
+    /// adding class
+    case "POSTING_DATA":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "SAVING_POSTED_DATA":
+      return {
+        ...state,
+        loading: false,
+      };
+    case "POSTED_ERROR":
+      return {
+        ...state,
+        loading: false,
+      };
+
+    // FROM instructorHomePage.js
+    case "FETCHING_INSTRUCTOR_CLASSES":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "GETTING_INSTRUCTOR_CLASSES":
+      return {
+        ...state,
+        loading: false,
+        instructorClass: action.payload,
+      };
+    case "ERROR_GETTING_CLASSES":
+      return {
+        ...state,
+        loading: false,
+      };
+    // end here
+
+    // REMOVING CLASS
+    case "REMOVING_CLASS":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "REMOVED_CLASS":
+      return {
+        ...state,
+        loading: false,
+      };
+    case "ERROR_REMOVING_CLASS":
+      return {
+        ...state,
+        loading: false,
+      };
     default:
       return state;
   }
