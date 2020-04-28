@@ -86,8 +86,8 @@ function Login() {
         .post("/api/auth/instructors/login", loginValues)
         .then((res) => {
           console.log(res);
-          dispatch({ type: "SAVE_USER_ID", payload: res.data.id });
           localStorage.setItem("token", JSON.stringify(res.data.token));
+          localStorage.setItem("id", JSON.stringify(res.data.id));
           history.push("/account/instructor");
         })
         .catch((err) => {
@@ -98,6 +98,7 @@ function Login() {
         .post("/api/auth/clients/login", loginValues)
         .then((res) => {
           localStorage.setItem("token", JSON.stringify(res.data.token));
+          localStorage.setItem("id", JSON.stringify(res.data.id));
           history.push("/account/client");
         })
         .catch((err) => {

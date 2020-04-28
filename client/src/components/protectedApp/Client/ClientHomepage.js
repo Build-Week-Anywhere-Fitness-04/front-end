@@ -8,7 +8,7 @@ const ClientHomePage = () => {
   const reducer = useSelector((state) => ({
     ...state,
   }));
-  //   console.log("reducer here", reducer.useReducer);
+  //   console.log("reducer here", reducer.clientReducer);
   return (
     <div>
       <Navbar />

@@ -1,18 +1,29 @@
 /// react II only
-const initalValue = {
-  clientID: 0,
-  instructorID: 0,
-  loading: false,
-  data: [],
-  error: "",
-};
+import { initialValues } from "./initialValues";
 
-export const userReducer = (state = initalValue, action) => {
+export const userReducer = (state = initialValues, action) => {
   switch (action.type) {
-    case "SAVE_USER_ID":
+    case "SAVE_INSTRUCTOR_ID":
+      // const id = JSON.parse(localStorage.getItem("id"));
       return {
         ...state,
         instructorID: action.payload,
+      };
+    case "POSTING_DATA":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "SAVING_POSTED_DATA":
+      return {
+        ...state,
+        loading: false,
+        instructorClass: [...state.instructorClass, action.payload],
+      };
+    case "POSTED_ERROR":
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;

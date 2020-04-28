@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import axios from "axios";
@@ -39,10 +40,26 @@ const validationSchema = yup.object().shape({
 const getTime = new Date().toLocaleDateString();
 
 const AddClassesForm = () => {
+  const dispatch = useDispatch();
+  const reducer = useSelector((state) => ({
+    ...state,
+  }));
   const [selectedTime, setSelectedTime] = useState(getTime);
   const [selectedDate, setSelectedDate] = useState(
     new Date("2014-08-18T21:11:54")
   );
+
+  useEffect(() => {
+    const id = JSON.parse(localStorage.getItem("id"));
+    console.log(id);
+    if (id) {
+      dispatch({ type: "SAVE_INSTRUCTOR_ID", payload: id });
+    }
+  }, []);
+
+  const { instructorID } = reducer.userReducer;
+  console.log("instructor here ", instructorID);
+
   const [img, setImg] = useState("");
   const classes = useStyles();
 
@@ -78,6 +95,7 @@ const AddClassesForm = () => {
         initialValues={{
           name: "",
           type: "",
+          location: "",
           start_time: "",
           intensity: "",
           status: "",
@@ -91,25 +109,39 @@ const AddClassesForm = () => {
           const {
             name,
             type,
+            location,
             start_time,
             intensity,
             price,
             duration,
             max_class_size,
             description,
+            image_url,
           } = values;
           const newValues = {
             name,
             type,
+            location,
             start_time: datesFormatted,
             intensity,
             price,
             duration,
             max_class_size,
             description,
+            image_url: img,
           };
           console.log(newValues);
-
+          dispatch("POSTING_DATA");
+          axiosWithAuth()
+            .post(`/api/instructors/${instructorID}/classes`, newValues)
+            .then((res) => {
+              console.log(res);
+              dispatch({ type: "SAVING_POSTED_DATA", payload: res.data });
+            })
+            .catch((err) => {
+              console.log(err);
+              dispatch({ type: "POSTED_ERROR", payload: err });
+            });
           resetForm();
         }}
       >
@@ -124,13 +156,21 @@ const AddClassesForm = () => {
                 as={TextField}
               />
             </label>
-
             <label htmlFor="type">
               <Field
                 type="text"
                 id="type"
                 name="type"
                 placeholder="class type"
+                as={TextField}
+              />
+            </label>
+            <label htmlFor="location">
+              <Field
+                type="text"
+                id="location"
+                name="location"
+                placeholder="class location"
                 as={TextField}
               />
             </label>
@@ -188,7 +228,6 @@ const AddClassesForm = () => {
                 as={TextField}
               />
             </label>
-
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardTimePicker
                 className="time-picker"
@@ -214,6 +253,13 @@ const AddClassesForm = () => {
                 }}
               />
             </MuiPickersUtilsProvider>
+            <Field
+              className="file"
+              type="file"
+              name="file"
+              onChange={uploadImage}
+              as={TextField}
+            />
 
             <div className="btn-add">
               <button type="submit">Add class</button>
@@ -226,11 +272,3 @@ const AddClassesForm = () => {
 };
 
 export default AddClassesForm;
-
-// <Field
-//   className="file"
-//   type="file"
-//   name="file"
-//   onChange={uploadImage}
-//   as={TextField}
-// />;
