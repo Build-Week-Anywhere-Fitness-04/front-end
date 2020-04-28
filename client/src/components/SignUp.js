@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Recaptcha from "react-recaptcha";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axios from "axios";
 
 import * as yup from "yup";
 
@@ -46,8 +47,10 @@ const signUpSchema = yup.object().shape({
     .min(2, "Need at least 2 characters")
     .required("Last name is required"),
   email: yup.string().email().required("Email is required"),
-  phoneNumber: yup.string().matches(phoneRegExp, "Phone number is not valid")
-  .notRequired(),
+  phoneNumber: yup
+    .string()
+    .matches(phoneRegExp, "Phone number is not valid")
+    .notRequired(),
   password: yup
     .string()
     .min(6, "Password must be at least 6 characters.")
@@ -79,23 +82,39 @@ function SignUp() {
     e.preventDefault();
 
     if (isVerified) {
+      const {
+        username,
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        password,
+        instructorOrClient,
+      } = signUpValues;
       // alert("you have successfully signed up");
-      if (signUpValues.instructorOrClient === "instructor") {
+      const values = {
+        username,
+        password,
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        phone: phoneNumber,
+      };
+      if (instructorOrClient === "instructor") {
         axiosWithAuth()
-          .post("/api/auth/instructor")
+          .post("/api/auth/instructors/register", values)
           .then((res) => {
-            console.log(res);
-            history.push("/admin-account");
+            history.push("/login");
           })
           .catch((err) => {
             console.log(err);
           });
       } else {
         axiosWithAuth()
-          .post("/api/auth/instructor")
+          .post("/api/auth/clients/register", values)
           .then((res) => {
             console.log(res);
-            history.push("/account");
+            history.push("/login");
           })
           .catch((err) => {
             console.log(err);
