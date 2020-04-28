@@ -6,19 +6,21 @@ import { Styles } from "./Styles";
 import * as yup from "yup";
 
 const initialLoginValues = {
-  email: "",
+  username: "",
   password: "",
   instructorOrClient: "",
 };
 
 const initialLoginErrors = {
-  email: "",
+  username: "",
   password: "",
   instructorOrClient: "",
 };
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email().required("Email is required to login."),
+  username: yup.string()
+    .min(4, "Username must be at least 4 characters.")
+    .required("Username is required to login."),
   password: yup
     .string()
     .min(6, "Password must be at least 6 characters.")
@@ -49,7 +51,7 @@ function Login() {
         });
       })
       .catch((err) => {
-        console.log(err);
+        
         setLoginErrors({
           ...loginErrors,
           [name]: err.errors[0],
@@ -72,7 +74,7 @@ function Login() {
     e.preventDefault();
 
     const loginUser = {
-      email: e.target.email,
+      username: e.target.username,
       password: e.target.password,
     };
   };
@@ -83,15 +85,15 @@ function Login() {
         <h1>Login</h1>
 
         <label>
-          Email:&nbsp;
+          Username:&nbsp;
           <input
             onChange={onInputChange}
-            name="email"
-            type="email"
+            name="username"
+            type="username"
             errors={loginErrors}
           />
         </label>
-        <div className="errors">{loginErrors.email}</div>
+        <div className="errors">{loginErrors.username}</div>
 
         <label>
           Password:&nbsp;
