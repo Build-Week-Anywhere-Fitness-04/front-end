@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Route } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 import InstructorHeader from "./InstructorHeader";
 import InstructorContent from "./InstructorContent";
 import DisplayInstructorsClasses from "./DisplayInstructorsClasses";
-import InstructorSingleClass from "./InstructorSingleClass";
 
 const InstructionHomePage = () => {
   const [updateData, setUpdateData] = useState({});
+
   const { id } = useParams();
   const dispatch = useDispatch();
   const reducer = useSelector((state) => ({
@@ -16,6 +16,8 @@ const InstructionHomePage = () => {
   }));
   const { instructorID, instructorClass } = reducer.userReducer;
   //   console.log("reducer here", instructorID);
+
+  //   console.log("url ", url, "path ", path);
 
   useEffect(() => {
     dispatch({ type: "FETCHING_INSTRUCTOR_CLASSES" });
@@ -41,6 +43,7 @@ const InstructionHomePage = () => {
       .then((res) => {
         console.log("res from deleting..", res);
         dispatch({ type: "REMOVED_CLASS" });
+        setUpdateData(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -56,9 +59,6 @@ const InstructionHomePage = () => {
         classes={instructorClass}
         deleteClass={deleteClass}
       />
-      <Route exact path="/account/instructor/:id/more-info">
-        <InstructorSingleClass classes={instructorClass} />
-      </Route>
     </div>
   );
 };

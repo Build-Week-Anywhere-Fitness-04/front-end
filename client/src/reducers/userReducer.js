@@ -11,21 +11,21 @@ export const userReducer = (state = initialValues, action) => {
       };
 
     /// adding class
-    case "POSTING_DATA":
-      return {
-        ...state,
-        loading: true,
-      };
-    case "SAVING_POSTED_DATA":
-      return {
-        ...state,
-        loading: false,
-      };
-    case "POSTED_ERROR":
-      return {
-        ...state,
-        loading: false,
-      };
+    //  case "POSTING_DATA":
+    //    return {
+    //      ...state,
+    //      loading: true,
+    //    };
+    //  case "SAVING_POSTED_DATA":
+    //    return {
+    //      ...state,
+    //      loading: false,
+    //    };
+    //  case "POSTED_ERROR":
+    //    return {
+    //      ...state,
+    //      loading: false,
+    //    };
 
     // FROM instructorHomePage.js
     case "FETCHING_INSTRUCTOR_CLASSES":
