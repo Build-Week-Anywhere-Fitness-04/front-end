@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useRouteMatch, useParams } from "react-router-dom";
+import { Link, useRouteMatch, useParams, useHistory } from "react-router-dom";
 import testing from "../../../img/yoga.jpg";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 
@@ -20,8 +20,12 @@ const InstructorCardClass = ({ clss, deleteClass }) => {
   } = clss;
   const match = useParams();
   const { url, path } = useRouteMatch();
+  const history = useHistory();
   //   console.log("match here ", match);
   //   console.log("url ", url, "path ", path);
+  const editBtn = () => {
+    history.push(`${url}/edit/${id}`);
+  };
   return (
     <div className="InstructorCardClass">
       <Link to={`${url}/${id}/more-info`}>
@@ -40,7 +44,7 @@ const InstructorCardClass = ({ clss, deleteClass }) => {
         <div className="bottom-row">
           <p className="starts">11:30 AM</p>
           <div className="icons">
-            <div className="edit">
+            <div className="edit" onClick={editBtn}>
               <AiOutlineEdit />
             </div>
             <div className="del" onClick={deleteClass}>
