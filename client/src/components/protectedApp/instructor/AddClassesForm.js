@@ -39,7 +39,7 @@ const validationSchema = yup.object().shape({
 
 const getTime = new Date().toLocaleDateString();
 
-const AddClassesForm = () => {
+const AddClassesForm = ({ setUpdateData }) => {
   const dispatch = useDispatch();
   const reducer = useSelector((state) => ({
     ...state,
@@ -130,17 +130,16 @@ const AddClassesForm = () => {
             description,
             image_url: img,
           };
-          console.log(newValues);
-          dispatch("POSTING_DATA");
+          //  console.log(newValues);
+
           axiosWithAuth()
             .post(`/api/instructors/${instructorID}/classes`, newValues)
             .then((res) => {
-              console.log(res);
-              dispatch({ type: "SAVING_POSTED_DATA", payload: res.data });
+              console.log("class added", res);
+              setUpdateData(res.data);
             })
             .catch((err) => {
               console.log(err);
-              dispatch({ type: "POSTED_ERROR", payload: err });
             });
           resetForm();
         }}
