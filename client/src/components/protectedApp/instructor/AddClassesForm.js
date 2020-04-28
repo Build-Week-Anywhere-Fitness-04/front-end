@@ -1,31 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
+import * as yup from "yup";
+import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
 } from "@material-ui/pickers";
+import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(2),
+      margin: theme.spacing(3),
       width: "25ch",
     },
   },
 }));
 
+const validationSchema = yup.object().shape({
+  name: yup.string().required("Field required"),
+  type: yup.string().required("Field require"),
+  start_time: yup.string().required("Field required"),
+  status: yup.string(),
+  intensity: yup
+    .number()
+    .required("Field required")
+    .max(5, "canoot be longer than that"),
+  price: yup.number().required("Field required"),
+  duration: yup.number().required("Field required"),
+  max_class_size: yup.number().required("Field required"),
+  description: yup.string().required("Field required"),
+});
+
+const getTime = new Date().toLocaleDateString();
+
 const AddClassesForm = () => {
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
-  );
+  const [selectedDate, setSelectedDate] = useState(getTime);
+  const [img, setImg] = useState("");
+  const classes = useStyles();
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-  const classes = useStyles();
+
+  const uploadImage = (e) => {
+    const files = e.target.files[0];
+    const formData = new FormData();
+    formData.append("upload_preset", "pl2czq6m");
+    formData.append("file", files);
+
+    axios
+      .post(`https://api.cloudinary.com/v1_1/dedps0vtx/image/upload`, formData)
+      .then((res) => {
+        console.log(res);
+        setImg(res.data.secure_url);
+      })
+      .catch((err) => [console.log(err)]);
+  };
+
   return (
     <div className="AddClassesForm">
       <Formik
@@ -34,13 +69,14 @@ const AddClassesForm = () => {
           type: "",
           start_time: "",
           intensity: "",
+          status: "",
           price: "",
           duration: "",
           max_class_size: "",
           description: "",
         }}
+        validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
-          //  console.log(values);
           const {
             name,
             type,
@@ -62,10 +98,11 @@ const AddClassesForm = () => {
             description,
           };
           console.log(newValues);
+
           resetForm();
         }}
       >
-        {() => (
+        {({ errors, touched }) => (
           <Form className={classes.root}>
             <label htmlFor="name">
               <Field
@@ -76,6 +113,7 @@ const AddClassesForm = () => {
                 as={TextField}
               />
             </label>
+
             <label htmlFor="type">
               <Field
                 type="text"
@@ -94,9 +132,18 @@ const AddClassesForm = () => {
                 as={TextField}
               />
             </label>
-            <label htmlFor="price">
+            <label htmlFor="status">
               <Field
                 type="text"
+                id="status"
+                name="status"
+                placeholder="class status 'optional' "
+                as={TextField}
+              />
+            </label>
+            <label htmlFor="price">
+              <Field
+                type="number"
                 id="price"
                 name="price"
                 placeholder="class price"
@@ -105,7 +152,7 @@ const AddClassesForm = () => {
             </label>
             <label htmlFor="duration">
               <Field
-                type="text"
+                type="number"
                 id="duration"
                 name="duration"
                 placeholder="class duration"
@@ -132,21 +179,22 @@ const AddClassesForm = () => {
             </label>
 
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify="space-around">
-                <KeyboardTimePicker
-                  margin="normal"
-                  id="time-picker"
-                  label="class start time"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  // name="start_time"
-                  KeyboardButtonProps={{
-                    "aria-label": "change time",
-                  }}
-                />
-              </Grid>
+              <KeyboardTimePicker
+                className="time-picker"
+                margin="normal"
+                id="time-picker"
+                label="class start time"
+                value={selectedDate}
+                onChange={handleDateChange}
+                KeyboardButtonProps={{
+                  "aria-label": "change time",
+                }}
+              />
             </MuiPickersUtilsProvider>
-            <button type="submit">Add class</button>
+
+            <div className="btn-add">
+              <button type="submit">Add class</button>
+            </div>
           </Form>
         )}
       </Formik>
@@ -155,3 +203,11 @@ const AddClassesForm = () => {
 };
 
 export default AddClassesForm;
+
+// <Field
+//   className="file"
+//   type="file"
+//   name="file"
+//   onChange={uploadImage}
+//   as={TextField}
+// />;
