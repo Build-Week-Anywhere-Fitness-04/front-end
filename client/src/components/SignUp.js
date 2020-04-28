@@ -30,7 +30,7 @@ const initialSignUpErrors = {
   instructorOrClient: "",
 };
 
-const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const signUpSchema = yup.object().shape({
   username: yup
@@ -47,7 +47,7 @@ const signUpSchema = yup.object().shape({
     .required("Last name is required"),
   email: yup.string().email().required("Email is required"),
   phoneNumber: yup.string().matches(phoneRegExp, "Phone number is not valid")
-  .notRequired(),
+  .nullable(),
   password: yup
     .string()
     .min(6, "Password must be at least 6 characters.")

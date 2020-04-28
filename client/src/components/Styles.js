@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 export const Styles = styled.div`
+  * {
+    font-family: 'Raleway', sans-serif;
+  }
   h1 {
     text-align: center;
-    color: grey;
+    color: black;
   }
   p {
     color: red;
@@ -14,7 +17,7 @@ export const Styles = styled.div`
     flex-direction: column;
     width: 360px;
     margin: 100px auto;
-    border: 1px solid grey;
+    border: 1px solid black;
     padding: 10px;
     border-radius: 5px;
     
@@ -34,12 +37,16 @@ export const Styles = styled.div`
   }
 
   button {
-    background: green;
+    background: grey;
     padding: 10px;
-    color: white;
+    color: black;
     margin-top: 20px;
     border-radius: 5px;
     font-size: 1.2em;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #FF9233;
   }
 `
 
@@ -47,11 +54,11 @@ export const NavStyles = styled.div`
   .container {
     width: 80%;
     margin: 0 auto;
-    
+    font-family: 'Raleway', sans-serif;
   }
   
   header {
-    background: #55d6aa;
+    background: #FF9233;
     height: 50px;
   }
 
@@ -76,7 +83,7 @@ export const NavStyles = styled.div`
     display: inline-block;
     margin-left: 35px;
     padding-top: 13px;
-    color: #444444;
+    color: #000000;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 18px;
