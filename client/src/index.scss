@@ -1,8 +1,13 @@
 @import "./sass/variables";
 @import "./sass/global";
+
+// clients
 @import "./sass/clientnav";
 @import "./sass/cilent-header";
 
 // instructor
 @import "./sass/instructor-header";
 @import "./sass/content-instructor";
+
+// global
+@import "./sass/footer";
