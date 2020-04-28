@@ -9,22 +9,22 @@ export const userReducer = (state = initialValues, action) => {
         ...state,
         instructorID: action.payload,
       };
-    case "POSTING_DATA":
-      return {
-        ...state,
-        loading: true,
-      };
-    case "SAVING_POSTED_DATA":
-      return {
-        ...state,
-        loading: false,
-        instructorClass: [...state.instructorClass, action.payload],
-      };
-    case "POSTED_ERROR":
-      return {
-        ...state,
-        loading: false,
-      };
+    //  case "POSTING_DATA":
+    //    return {
+    //      ...state,
+    //      loading: true,
+    //    };
+    //  case "SAVING_POSTED_DATA":
+    //    return {
+    //      ...state,
+    //      loading: false,
+    //      instructorClass: action.payload,
+    //    };
+    //  case "POSTED_ERROR":
+    //    return {
+    //      ...state,
+    //      loading: false,
+    //    };
     default:
       return state;
   }

@@ -6,11 +6,11 @@ import InstructorHomePage from "./instructor/InstructorHomePage";
 const ProtectedMain = () => {
   return (
     <div>
-      <Route exact path="/account/client">
+      <Route exact path="/account/client/:id">
         <ClientHomePage />
       </Route>
 
-      <Route exact path="/account/instructor">
+      <Route exact path="/account/instructor/:id">
         <InstructorHomePage />
       </Route>
     </div>

@@ -88,7 +88,7 @@ function Login() {
           console.log(res);
           localStorage.setItem("token", JSON.stringify(res.data.token));
           localStorage.setItem("id", JSON.stringify(res.data.id));
-          history.push("/account/instructor");
+          history.push(`/account/instructor/${res.data.id}`);
         })
         .catch((err) => {
           console.log(err);
@@ -99,7 +99,7 @@ function Login() {
         .then((res) => {
           localStorage.setItem("token", JSON.stringify(res.data.token));
           localStorage.setItem("id", JSON.stringify(res.data.id));
-          history.push("/account/client");
+          history.push(`/account/client/${res.data.id}`);
         })
         .catch((err) => {
           console.log(err);
