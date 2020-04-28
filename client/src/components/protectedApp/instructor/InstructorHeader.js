@@ -1,9 +1,12 @@
 import React from "react";
+import Navbar from "./Navbar";
+import Header from "./Header";
 
 const InstructorHeader = () => {
   return (
     <div className="InstructorHeader">
-      <h2>InstructorHeader</h2>
+      <Navbar />
+      <Header />
     </div>
   );
 };
