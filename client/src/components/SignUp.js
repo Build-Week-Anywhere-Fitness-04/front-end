@@ -11,6 +11,7 @@ import { Styles } from "./Styles";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const initialSignUpValues = {
+  username: "",
   firstName: "",
   lastName: "",
   email: "",
@@ -20,6 +21,7 @@ const initialSignUpValues = {
 };
 
 const initialSignUpErrors = {
+  username: "",
   firstName: "",
   lastName: "",
   email: "",
@@ -28,9 +30,13 @@ const initialSignUpErrors = {
   instructorOrClient: "",
 };
 
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
 const signUpSchema = yup.object().shape({
+  username: yup
+    .string()
+    .min(4, "Need at least 4 characters.")
+    .required("Username is required"),
   firstName: yup
     .string()
     .min(2, "Need at least 2 characters.")
@@ -40,7 +46,8 @@ const signUpSchema = yup.object().shape({
     .min(2, "Need at least 2 characters")
     .required("Last name is required"),
   email: yup.string().email().required("Email is required"),
-  phoneNumber: yup.string().matches(phoneRegExp, "Phone number is not valid"),
+  phoneNumber: yup.string().matches(phoneRegExp, "Phone number is not valid")
+  .notRequired(),
   password: yup
     .string()
     .min(6, "Password must be at least 6 characters.")
@@ -146,6 +153,17 @@ function SignUp() {
           <h1>Sign Up</h1>
 
           <div className="errors"></div>
+
+          <label>
+            Username:&nbsp;
+            <input
+              onChange={onInputChange}
+              name="username"
+              type="text"
+              placeholder="Username"
+            />
+          </label>
+          <div className="errors">{signUpErrors.username}</div>
 
           <label>
             First Name:&nbsp;
