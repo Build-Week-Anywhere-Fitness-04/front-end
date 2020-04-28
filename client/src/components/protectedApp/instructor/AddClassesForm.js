@@ -51,14 +51,14 @@ const AddClassesForm = () => {
 
   useEffect(() => {
     const id = JSON.parse(localStorage.getItem("id"));
-    console.log(id);
+    //  console.log(id);
     if (id) {
       dispatch({ type: "SAVE_INSTRUCTOR_ID", payload: id });
     }
-  }, []);
+  }, [dispatch]);
 
   const { instructorID } = reducer.userReducer;
-  console.log("instructor here ", instructorID);
+  //   console.log("instructor here ", instructorID);
 
   const [img, setImg] = useState("");
   const classes = useStyles();
