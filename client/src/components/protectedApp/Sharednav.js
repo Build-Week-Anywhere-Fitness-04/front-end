@@ -1,24 +1,22 @@
 import React from "react";
-import { NavLink, useRouteMatch } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
-  const { url, path } = useRouteMatch();
+const Sharednav = () => {
   const logout = () => {
     localStorage.clear();
   };
   return (
-    <div className="Navbar">
-      <div className="Navbar-container">
+    <div className="Sharednavbar">
+      <div className="Sharednavbar-container">
         <h1>fitness anywhere</h1>
         <nav>
           <NavLink to="/login" onClick={logout}>
             logout
           </NavLink>
-          <NavLink to={`${url}/schedule`}>Schedule</NavLink>
         </nav>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default Sharednav;

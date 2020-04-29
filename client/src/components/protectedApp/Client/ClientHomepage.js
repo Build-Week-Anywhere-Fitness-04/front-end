@@ -25,11 +25,24 @@ const ClientHomePage = () => {
         dispatch({ type: "SAVING_ERROR", payload: err });
       });
   }, [dispatch]);
+
+  const joinClass = (item) => {
+    const class_id = item.id;
+    axiosWithAuth()
+      .post(`/api/clients/${class_id}/classes`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log("clicked ", item);
+  };
   return (
     <div>
       <Navbar />
       <Header />
-      <ClientDisplayClasses allClasses={allClasses} />
+      <ClientDisplayClasses allClasses={allClasses} joinClass={joinClass} />
     </div>
   );
 };

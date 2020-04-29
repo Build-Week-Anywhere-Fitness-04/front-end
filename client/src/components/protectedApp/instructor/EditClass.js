@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
+import Sharednav from "../Sharednav";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import DateFnsUtils from "@date-io/date-fns";
@@ -140,6 +141,7 @@ const EditClass = () => {
 
   return (
     <div className="EditClass">
+      <Sharednav />
       <form className={classes.root} onSubmit={submitNewValues}>
         <label htmlFor="name">
           <TextField
@@ -274,7 +276,7 @@ const EditClass = () => {
         </MuiPickersUtilsProvider>
 
         <div className="btn-add-edit">
-          <button type="submit">Add class</button>
+          <button type="submit">Update</button>
         </div>
       </form>
     </div>
