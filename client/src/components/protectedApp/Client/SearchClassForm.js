@@ -1,33 +1,43 @@
-import React from "react";
-import { Formik, Form, Field } from "formik";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 
 const SearchClassForm = () => {
+  const history = useHistory();
+  const { url } = useRouteMatch();
+  const dispatch = useDispatch();
+  const [value, setValue] = useState("");
+  const reducer = useSelector((state) => state.clientReducer.allClasses);
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const filtered = reducer.filter((cla) => cla.type.includes(value));
+    dispatch({ type: "ADDING_SEARCH_CLASSES", payload: filtered });
+    history.push(`${url}/results`);
+    setValue("");
+  };
   return (
     <div className="SearchClassForm">
-      <Formik
-        initialValues={{ class: "" }}
-        onSubmit={(values, { resetForm }) => {
-          console.log(values);
-          resetForm();
-        }}
-      >
-        {() => (
-          <Form>
-            <label htmlFor="class">
-              <Field
-                type="text"
-                name="class"
-                id="class"
-                placeholder="search for classes"
-              />
-            </label>
-            <button>
-              <AiOutlineSearch />
-            </button>
-          </Form>
-        )}
-      </Formik>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="search">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="search for classes"
+            value={value}
+            onChange={handleChange}
+          />
+        </label>
+        <button type="submit">
+          <AiOutlineSearch />
+        </button>
+      </form>
     </div>
   );
 };

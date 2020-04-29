@@ -2,6 +2,7 @@ import React from "react";
 import { Route, useRouteMatch } from "react-router-dom";
 import ClientHomePage from "./Client/ClientHomepage";
 import ClientProfile from "./Client/ClientProfile";
+import ClientResults from "./Client/ClientResults";
 import InstructorHomePage from "./instructor/InstructorHomePage";
 import InstructorSingleClass from "./instructor/InstructorSingleClass";
 import ClientSingleClass from "./Client/ClientSingleClass";
@@ -20,6 +21,9 @@ const ProtectedMain = () => {
       </Route>
       <Route exact path={`${url}/client/:id/schedule`}>
         <ClientProfile />
+      </Route>
+      <Route exact path={`${url}/client/:id/results`}>
+        <ClientResults />
       </Route>
 
       <Route exact path="/account/instructor/:id">

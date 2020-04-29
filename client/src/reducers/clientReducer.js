@@ -24,6 +24,13 @@ export const clientReducer = (state = initialValues, action) => {
         loading: false,
         error: action.payload,
       };
+
+    // filtered classes
+    case "ADDING_SEARCH_CLASSES":
+      return {
+        ...state,
+        filterClasses: action.payload,
+      };
     default:
       return state;
   }
