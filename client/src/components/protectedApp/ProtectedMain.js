@@ -9,8 +9,6 @@ import EditClass from "./instructor/EditClass";
 const ProtectedMain = () => {
   const { url } = useRouteMatch();
 
-  console.log("url ", url);
-
   return (
     <div>
       <Route exact path="/account/client/:id">

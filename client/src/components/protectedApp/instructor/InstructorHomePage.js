@@ -48,7 +48,7 @@ const InstructionHomePage = () => {
         console.log(err);
         dispatch({ type: "ERROR_GETTING_INSTRUCTOR", payload: err });
       });
-  }, []);
+  }, [dispatch, id]);
 
   //   DELETE /api/instructors/:id/classes/:class_id
 

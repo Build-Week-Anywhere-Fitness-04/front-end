@@ -13,7 +13,7 @@ const InstructorCardClass = ({ clss, deleteClass }) => {
     //  max_class_size,
     name,
     price,
-    //  start_time,
+    start_time,
     //  type,
     //  status,
   } = clss;
@@ -22,6 +22,10 @@ const InstructorCardClass = ({ clss, deleteClass }) => {
   const history = useHistory();
   //   console.log("match here ", match);
   //   console.log("url ", url, "path ", path);
+  const convert = new Date(start_time);
+  const t = convert.toLocaleTimeString().split(":");
+  const am = t.slice(-1)[0].split(" ")[1];
+  const time = `${t[0]}:${t[1]} ${am}`;
   const editBtn = () => {
     history.push(`${url}/edit/${id}`);
   };
@@ -41,7 +45,7 @@ const InstructorCardClass = ({ clss, deleteClass }) => {
           <span>{duration}</span> mins
         </p>
         <div className="bottom-row">
-          <p className="starts">11:30 AM</p>
+          <p className="starts">{time}</p>
           <div className="icons">
             <div className="edit" onClick={editBtn}>
               <AiOutlineEdit />

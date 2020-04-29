@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Recaptcha from "react-recaptcha";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import axios from "axios";
 
 import * as yup from "yup";
 
