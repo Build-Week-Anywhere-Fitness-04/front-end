@@ -1,6 +1,20 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  //
-}
+@import "./sass/variables";
+@import "./sass/global";
+
+// clients
+@import "./sass/clientnav";
+@import "./sass/cilent-header";
+@import "./sass/displayCards";
+@import "./sass/client-display-class";
+@import "./sass/client-profile";
+
+// instructor
+@import "./sass/instructor-header";
+@import "./sass/content-instructor";
+@import "./sass/instructor-class";
+@import "./sass/instructor-singleClass";
+@import "./sass/instructor-edit";
+
+// global
+@import "./sass/footer";
+@import "./sass/shared-navbar";

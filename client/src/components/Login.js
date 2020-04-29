@@ -1,7 +1,8 @@
 // REACT I only
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Styles, GoogleBtn, FacebookBtn } from "./Styles";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 import * as yup from "yup";
 
@@ -18,7 +19,8 @@ const initialLoginErrors = {
 };
 
 const loginSchema = yup.object().shape({
-  username: yup.string()
+  username: yup
+    .string()
     .min(4, "Username must be at least 4 characters.")
     .required("Username is required to login."),
   password: yup
@@ -32,6 +34,7 @@ const loginSchema = yup.object().shape({
 });
 
 function Login() {
+  const history = useHistory();
   const [loginValues, setLoginValues] = useState(initialLoginValues);
   const [loginErrors, setLoginErrors] = useState(initialLoginErrors);
 
@@ -51,7 +54,6 @@ function Login() {
         });
       })
       .catch((err) => {
-        
         setLoginErrors({
           ...loginErrors,
           [name]: err.errors[0],
@@ -70,13 +72,42 @@ function Login() {
     });
   }, [loginValues]);
 
+  // POST / api / auth / instructors / login
+  // POST / api / auth / clients / login
+
+  // omar12 omar12 instructor
+  // omarr omarrr client
   const onSubmit = (e) => {
     e.preventDefault();
+    if (loginValues.instructorOrClient === "instructor") {
+      axiosWithAuth()
+        .post("/api/auth/instructors/login", loginValues)
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem("token", JSON.stringify(res.data.token));
+          localStorage.setItem("id", JSON.stringify(res.data.id));
+          history.push(`/account/instructor/${res.data.id}`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      axiosWithAuth()
+        .post("/api/auth/clients/login", loginValues)
+        .then((res) => {
+          localStorage.setItem("token", JSON.stringify(res.data.token));
+          localStorage.setItem("id", JSON.stringify(res.data.id));
+          history.push(`/account/client/${res.data.id}`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-    const loginUser = {
-      username: e.target.username,
-      password: e.target.password,
-    };
+    //  const loginUser = {
+    //    username: e.target.username,
+    //    password: e.target.password,
+    //  };
   };
 
   return (
