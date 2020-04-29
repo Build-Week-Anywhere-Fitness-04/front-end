@@ -6,9 +6,9 @@ import InstructorSingleClass from "./instructor/InstructorSingleClass";
 import EditClass from "./instructor/EditClass";
 
 const ProtectedMain = () => {
-  const { path, url } = useRouteMatch();
+  const { url } = useRouteMatch();
 
-  console.log("url ", url, "path ", path);
+  //   console.log("url ", url, "path ", path);
 
   return (
     <div>

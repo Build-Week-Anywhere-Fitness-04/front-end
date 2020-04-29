@@ -1,10 +1,10 @@
 import React from "react";
-import { useRouteMatch, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import testing from "../../../img/yoga.jpg";
+// import testing from "../../../img/yoga.jpg";
 
 const InstructorSingleClass = () => {
-  const { url, path } = useRouteMatch();
+  //   const { url, path } = useRouteMatch();
   const { c_id } = useParams();
   const reducer = useSelector((state) => ({
     ...state,
@@ -15,7 +15,7 @@ const InstructorSingleClass = () => {
   );
 
   const {
-    id,
+    //  id,
     instructor_id,
     description,
     duration,
@@ -27,14 +27,14 @@ const InstructorSingleClass = () => {
     price,
     start_time,
     type,
-    status,
+    //  status,
   } = findClass;
 
-  console.log("class found ", findClass);
+  //   console.log("class found ", findClass);
 
   //   console.log("reucer", reducer);
-  console.log("url ", url, "path ", path);
-  console.log("params ", c_id);
+  //   console.log("url ", url, "path ", path);
+  //   console.log("params ", c_id);
   return (
     <div className="InstructorSingleClass">
       <div className="wrapper-class">

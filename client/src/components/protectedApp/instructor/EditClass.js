@@ -58,7 +58,7 @@ const EditClass = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [setClasse, id, c_id]);
 
   const uploadImage = (e) => {
     const files = e.target.files[0];
