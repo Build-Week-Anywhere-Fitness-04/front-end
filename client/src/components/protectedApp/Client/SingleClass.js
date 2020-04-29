@@ -1,12 +1,15 @@
 import React from "react";
-import { Link, useRouteMatch, useHistory } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 
 const InstructorCardClass = ({ cls }) => {
-  const { id, duration, image_url, name, price } = cls;
+  const { id, duration, image_url, name, price, start_time } = cls;
   const { url } = useRouteMatch();
-  const history = useHistory();
 
-  console.log("url here ", url);
+  const convert = new Date(start_time);
+  const t = convert.toLocaleTimeString().split(":");
+  const am = t.slice(-1)[0].split(" ")[1];
+  const time = `${t[0]}:${t[1]} ${am}`;
+
   return (
     <div className="InstructorCardClass">
       <Link to={`${url}/${id}/more-info`}>
@@ -23,7 +26,8 @@ const InstructorCardClass = ({ cls }) => {
           <span>{duration}</span> mins
         </p>
         <div className="bottom-row">
-          <p className="starts">11:30 AM</p>
+          <p className="starts">{time}</p>
+          <div id="join">join</div>
         </div>
       </div>
     </div>

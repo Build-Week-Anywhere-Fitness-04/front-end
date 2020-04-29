@@ -75,6 +75,7 @@ const ClientSingleClass = () => {
           <div className="InstructorSingleClass-description">
             <h2>About the class</h2>
             <span>description</span>
+
             <p>{description}</p>
           </div>
           <div className="goback-btn">

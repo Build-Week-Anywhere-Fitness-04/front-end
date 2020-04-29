@@ -24,7 +24,7 @@ const ClientHomePage = () => {
         console.log(err);
         dispatch({ type: "SAVING_ERROR", payload: err });
       });
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       <Navbar />
