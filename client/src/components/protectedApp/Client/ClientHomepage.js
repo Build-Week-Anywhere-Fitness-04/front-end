@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 import Navbar from "./Navbar";
 import Header from "./Header";
 import ClientDisplayClasses from "./ClientDisplayClasses";
 
 const ClientHomePage = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const reducer = useSelector((state) => ({
     ...state,
@@ -29,9 +31,9 @@ const ClientHomePage = () => {
   const joinClass = (item) => {
     const class_id = item.id;
     axiosWithAuth()
-      .post(`/api/clients/${class_id}/classes`)
+      .post(`/api/clients/${id}/classes`, { class_id })
       .then((res) => {
-        console.log(res);
+        //   console.log(res);
       })
       .catch((err) => {
         console.log(err);
