@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 
-const InstructorCardClass = ({ cls }) => {
+const InstructorCardClass = ({ cls, joinClass }) => {
   const { id, duration, image_url, name, price, start_time } = cls;
   const { url } = useRouteMatch();
 
@@ -27,7 +27,9 @@ const InstructorCardClass = ({ cls }) => {
         </p>
         <div className="bottom-row">
           <p className="starts">{time}</p>
-          <div id="join">join</div>
+          <div id="join" onClick={joinClass}>
+            join
+          </div>
         </div>
       </div>
     </div>
