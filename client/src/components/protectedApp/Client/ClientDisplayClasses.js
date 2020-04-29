@@ -1,12 +1,14 @@
 import React from "react";
 import SingleClass from "./SingleClass";
 
-const ClientDisplayClasses = () => {
+const ClientDisplayClasses = ({ allClasses }) => {
   return (
     <div className="ClientDisplayClasses">
+      <h3>hello</h3>
       <div className="ClientDisplayClasses-wrapper">
-        <h3>hello</h3>
-        <SingleClass />
+        {allClasses.map((cls) => (
+          <SingleClass key={cls.id} cls={cls} />
+        ))}
       </div>
     </div>
   );

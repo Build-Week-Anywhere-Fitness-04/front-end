@@ -1,0 +1,9 @@
+.ClientDisplayClasses {
+  width: $main-width;
+  margin: 5rem auto;
+  .ClientDisplayClasses-wrapper {
+    border: 1px solid red;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

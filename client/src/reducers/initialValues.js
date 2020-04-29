@@ -4,5 +4,6 @@ export const initialValues = {
   instructorName: "",
   loading: false,
   instructorClass: [],
+  allClasses: [],
   error: "",
 };

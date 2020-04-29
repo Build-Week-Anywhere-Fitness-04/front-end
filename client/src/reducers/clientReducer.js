@@ -7,6 +7,23 @@ export const clientReducer = (state = initialValues, action) => {
         ...state,
         clientID: action.payload,
       };
+    case "FETCHING_CLIENT_CLASSES":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "SAVING_CLIENT_CLASSES":
+      return {
+        ...state,
+        loading: false,
+        allClasses: action.payload,
+      };
+    case "SAVING_ERROR":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }
