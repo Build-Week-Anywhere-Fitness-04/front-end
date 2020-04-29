@@ -31,6 +31,33 @@ export const clientReducer = (state = initialValues, action) => {
         ...state,
         filterClasses: action.payload,
       };
+
+    // client join class
+    case "CLIENT_JOINED_CLASS":
+      return {
+        ...state,
+        joinedClass: true,
+      };
+
+    //  .get(`/api/clients/${id}/classes`)
+
+    case "FETCHING_CLASSES_JOINED":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "SAVING_JOINED_CLASSES":
+      return {
+        ...state,
+        loading: false,
+        classesJoined: action.payload,
+      };
+    case "ERROR_SAVING_JOINED_CLASSES":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

@@ -28,12 +28,27 @@ const ClientHomePage = () => {
       });
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch({ type: "FETCHING_CLASSES_JOINED" });
+    axiosWithAuth()
+      .get(`/api/clients/${id}/classes`)
+      .then((res) => {
+        //   console.log(res);
+        dispatch({ type: "SAVING_JOINED_CLASSES", payload: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({ type: "ERROR_SAVING_JOINED_CLASSES", payload: err });
+      });
+  }, [dispatch, id]);
+
   const joinClass = (item) => {
     const class_id = item.id;
     axiosWithAuth()
       .post(`/api/clients/${id}/classes`, { class_id })
       .then((res) => {
         //   console.log(res);
+        dispatch({ type: "CLIENT_JOINED_CLASS" });
       })
       .catch((err) => {
         console.log(err);

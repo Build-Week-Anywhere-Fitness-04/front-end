@@ -22,7 +22,7 @@ const ProtectedMain = () => {
       <Route exact path={`${url}/client/:id/schedule`}>
         <ClientProfile />
       </Route>
-      <Route exact path={`${url}/client/:id/results`}>
+      <Route exact path={`${url}/client/:id/:type/results`}>
         <ClientResults />
       </Route>
 

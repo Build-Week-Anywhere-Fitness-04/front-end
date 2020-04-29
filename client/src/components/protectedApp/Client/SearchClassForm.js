@@ -18,7 +18,7 @@ const SearchClassForm = () => {
     e.preventDefault();
     const filtered = reducer.filter((cla) => cla.type.includes(value));
     dispatch({ type: "ADDING_SEARCH_CLASSES", payload: filtered });
-    history.push(`${url}/results`);
+    history.push(`${url}/${value}/results`);
     setValue("");
   };
   return (

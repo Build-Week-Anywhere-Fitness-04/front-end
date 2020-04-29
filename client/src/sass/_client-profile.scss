@@ -1,11 +1,11 @@
 .ClientProfile {
   .ClientProfile-wrapper {
-    //  border: 1px solid red;
+    border: 1px solid red;
     width: $main-width;
     margin: 8rem auto 5rem;
     display: flex;
     .profile-icon {
-      // border: 1px solid red;
+      border: 1px solid red;
       width: 20%;
       display: flex;
       align-items: center;
@@ -21,7 +21,7 @@
       }
       margin-left: 2rem;
       .toggle-message {
-        //   border: 1px solid blue;
+        border: 1px solid blue;
 
         .find-classes {
           a {
@@ -37,5 +37,13 @@
         }
       }
     }
+  }
+
+  .show-joined-classes {
+    border: 1px solid red;
+    width: $main-width;
+    margin: 0rem auto 0rem;
+    display: flex;
+    flex-wrap: wrap;
   }
 }
