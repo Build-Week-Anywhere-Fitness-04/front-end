@@ -1,7 +1,6 @@
 // REACT I only
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Styles, GoogleBtn, FacebookBtn } from "./Styles";
+
 
 import * as yup from "yup";
 
