@@ -47,7 +47,7 @@ const signUpSchema = yup.object().shape({
     .required("Last name is required"),
   email: yup.string().email().required("Email is required"),
   phoneNumber: yup.string().matches(phoneRegExp, "Phone number is not valid")
-  .notRequired(),
+  .required(),
   password: yup
     .string()
     .min(6, "Password must be at least 6 characters.")
