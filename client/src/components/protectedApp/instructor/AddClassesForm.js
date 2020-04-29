@@ -227,6 +227,14 @@ const AddClassesForm = ({ setUpdateData }) => {
                 as={TextField}
               />
             </label>
+
+            <Field
+              className="file"
+              type="file"
+              name="file"
+              onChange={uploadImage}
+              as={TextField}
+            />
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardTimePicker
                 className="time-picker"
@@ -252,13 +260,6 @@ const AddClassesForm = ({ setUpdateData }) => {
                 }}
               />
             </MuiPickersUtilsProvider>
-            <Field
-              className="file"
-              type="file"
-              name="file"
-              onChange={uploadImage}
-              as={TextField}
-            />
 
             <div className="btn-add">
               <button type="submit">Add class</button>
