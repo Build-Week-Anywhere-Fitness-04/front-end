@@ -36,12 +36,12 @@ const InstructionHomePage = () => {
   //   DELETE /api/instructors/:id/classes/:class_id
 
   const deleteClass = (item) => {
-    console.log("clicked class ", item);
+    //  console.log("clicked class ", item);
     dispatch({ type: "REMOVING_CLASS" });
     axiosWithAuth()
       .delete(`/api/instructors/${id}/classes/${item.id}`)
       .then((res) => {
-        console.log("res from deleting..", res);
+        //   console.log("res from deleting..", res);
         dispatch({ type: "REMOVED_CLASS" });
         setUpdateData(res.data);
       })
