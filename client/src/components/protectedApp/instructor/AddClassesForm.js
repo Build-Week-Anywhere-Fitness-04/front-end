@@ -27,10 +27,8 @@ const validationSchema = yup.object().shape({
   type: yup.string().required("Field require"),
   start_time: yup.string().required("Field required"),
   status: yup.string(),
-  intensity: yup
-    .number()
-    .required("Field required")
-    .max(5, "canoot be longer than that"),
+  intensity: yup.number().required("Field required"),
+  //  .max(5, "canoot be longer than that"),
   price: yup.number().required("Field required"),
   duration: yup.number().required("Field required"),
   max_class_size: yup.number().required("Field required"),
@@ -45,9 +43,7 @@ const AddClassesForm = ({ setUpdateData }) => {
     ...state,
   }));
   const [selectedTime, setSelectedTime] = useState(getTime);
-  const [selectedDate, setSelectedDate] = useState(
-    new Date("2014-08-18T21:11:54")
-  );
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   useEffect(() => {
     const id = JSON.parse(localStorage.getItem("id"));
@@ -144,7 +140,7 @@ const AddClassesForm = ({ setUpdateData }) => {
           resetForm();
         }}
       >
-        {({ errors, touched }) => (
+        {() => (
           <Form className={classes.root}>
             <label htmlFor="name">
               <Field

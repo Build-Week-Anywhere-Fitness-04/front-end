@@ -1,25 +1,24 @@
 import React from "react";
-import { Link, useRouteMatch, useParams, useHistory } from "react-router-dom";
-import testing from "../../../img/yoga.jpg";
+import { Link, useRouteMatch, useHistory } from "react-router-dom";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 
 const InstructorCardClass = ({ clss, deleteClass }) => {
   const {
     id,
-    description,
+    //  description,
     duration,
     image_url,
-    intensity,
-    location,
-    max_class_size,
+    //  intensity,
+    //  location,
+    //  max_class_size,
     name,
     price,
-    start_time,
-    type,
-    status,
+    //  start_time,
+    //  type,
+    //  status,
   } = clss;
-  const match = useParams();
-  const { url, path } = useRouteMatch();
+  //   const match = useParams();
+  const { url } = useRouteMatch();
   const history = useHistory();
   //   console.log("match here ", match);
   //   console.log("url ", url, "path ", path);

@@ -10,23 +10,6 @@ export const userReducer = (state = initialValues, action) => {
         instructorID: action.payload,
       };
 
-    /// adding class
-    //  case "POSTING_DATA":
-    //    return {
-    //      ...state,
-    //      loading: true,
-    //    };
-    //  case "SAVING_POSTED_DATA":
-    //    return {
-    //      ...state,
-    //      loading: false,
-    //    };
-    //  case "POSTED_ERROR":
-    //    return {
-    //      ...state,
-    //      loading: false,
-    //    };
-
     // FROM instructorHomePage.js
     case "FETCHING_INSTRUCTOR_CLASSES":
       return {
@@ -61,6 +44,25 @@ export const userReducer = (state = initialValues, action) => {
       return {
         ...state,
         loading: false,
+      };
+
+    // saving instructor info
+    case "FETCHING_INSTRUCTOR":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "SAVE_INSTRUCTOR_NAME":
+      return {
+        ...state,
+        instructorName: action.payload,
+        loading: false,
+      };
+    case "ERROR_GETTING_INSTRUCTOR":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
     default:
       return state;

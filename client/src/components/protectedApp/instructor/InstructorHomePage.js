@@ -14,24 +14,41 @@ const InstructionHomePage = () => {
   const reducer = useSelector((state) => ({
     ...state,
   }));
-  const { instructorID, instructorClass } = reducer.userReducer;
+  const { instructorClass, instructorName } = reducer.userReducer;
   //   console.log("reducer here", instructorID);
 
-  //   console.log("url ", url, "path ", path);
+  //   console.log("name", instructorName);
 
   useEffect(() => {
     dispatch({ type: "FETCHING_INSTRUCTOR_CLASSES" });
     axiosWithAuth()
       .get(`/api/instructors/${id}/classes`)
       .then((res) => {
-        console.log("response here ", res);
+        //   console.log("response here ", res);
         dispatch({ type: "GETTING_INSTRUCTOR_CLASSES", payload: res.data });
       })
       .catch((err) => {
         console.log(err);
         dispatch({ type: "ERROR_GETTING_CLASSES", payload: err });
       });
-  }, [updateData]);
+  }, [updateData, id, dispatch]);
+
+  useEffect(() => {
+    dispatch({ type: "FETCHING_INSTRUCTOR" });
+    axiosWithAuth()
+      .get(`api/instructors/${id}`)
+      .then((res) => {
+        //   console.log("instructor information ", res);
+        dispatch({
+          type: "SAVE_INSTRUCTOR_NAME",
+          payload: res.data.first_name,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({ type: "ERROR_GETTING_INSTRUCTOR", payload: err });
+      });
+  }, []);
 
   //   DELETE /api/instructors/:id/classes/:class_id
 
@@ -53,7 +70,7 @@ const InstructionHomePage = () => {
 
   return (
     <div>
-      <InstructorHeader />
+      <InstructorHeader name={instructorName} />
       <InstructorContent setUpdateData={setUpdateData} />
       <DisplayInstructorsClasses
         classes={instructorClass}
