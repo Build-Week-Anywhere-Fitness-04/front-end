@@ -7,8 +7,6 @@
 
 # Recaptcha
 /.env
-
-
 # testing
 /coverage
 
