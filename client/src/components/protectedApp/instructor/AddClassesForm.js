@@ -79,7 +79,7 @@ const AddClassesForm = ({ setUpdateData }) => {
     axios
       .post(`https://api.cloudinary.com/v1_1/dedps0vtx/image/upload`, formData)
       .then((res) => {
-        console.log(res);
+        //   console.log(res);
         setImg(res.data.secure_url);
       })
       .catch((err) => [console.log(err)]);
@@ -131,7 +131,7 @@ const AddClassesForm = ({ setUpdateData }) => {
           axiosWithAuth()
             .post(`/api/instructors/${instructorID}/classes`, newValues)
             .then((res) => {
-              console.log("class added", res);
+              //   console.log("class added", res);
               setUpdateData(res.data);
             })
             .catch((err) => {
