@@ -1,7 +1,7 @@
 // REACT I only
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Styles } from "./Styles";
+import { Styles, GoogleBtn, FacebookBtn } from "./Styles";
 
 import * as yup from "yup";
 
@@ -119,6 +119,14 @@ function Login() {
         <button onClick={onSubmit} disabled={formDisabled}>
           Login
         </button>
+
+        {/*<GoogleBtn>
+            <button className="buttonText"><i class="fab fa-google"></i>Sign in with Google</button>
+        </GoogleBtn>
+
+        <FacebookBtn>
+            <button className="buttonText"><i class="fab fa-facebook"></i>Sign in with Facebook</button>
+        </FacebookBtn> */}
 
         <h5>
           Need to register? <Link to="/signup">Sign up here.</Link>

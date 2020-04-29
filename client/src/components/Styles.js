@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+
+
 export const Styles = styled.div`
   * {
     font-family: 'Raleway', sans-serif;
@@ -28,6 +30,7 @@ export const Styles = styled.div`
 
     input, select {
       font-size: 1.2em;
+      width: 100%;
     }
     .errors {
       color: red;
@@ -112,4 +115,48 @@ export const NavStyles = styled.div`
     width: 100%;
   }
 
+`
+
+export const GoogleBtn = styled.div`
+  button {
+      background: #4285F4;
+      color: white;
+      border-radius: 5px;
+      border: thin solid #888;
+      box-shadow: 1px 1px 1px grey;
+      white-space: nowrap;
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 5px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+    button:hover {
+      cursor: pointer;
+      background: white;
+      color: #4285F4;
+    }
+`
+
+export const FacebookBtn = styled.div`
+  button {
+      background: #4267b2;
+      color: white;
+      border-radius: 5px;
+      border: thin solid #888;
+      box-shadow: 1px 1px 1px grey;
+      white-space: nowrap;
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 5px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+    button:hover {
+      cursor: pointer;
+      background: white;
+      color: #4267b2;
+    }
 `
