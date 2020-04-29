@@ -218,7 +218,7 @@ function SignUp() {
           <div className="errors">{signUpErrors.email}</div>
 
           <label>
-            Phone number (optional):&nbsp;
+            Phone number:&nbsp;
             <input
               onChange={onInputChange}
               name="phoneNumber"
