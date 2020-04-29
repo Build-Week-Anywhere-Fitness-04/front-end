@@ -7,4 +7,6 @@ export const initialValues = {
   allClasses: [],
   filterClasses: [],
   error: "",
+  joinedClass: false,
+  classesJoined: [],
 };
