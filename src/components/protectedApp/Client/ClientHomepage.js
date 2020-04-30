@@ -58,7 +58,7 @@ const ClientHomePage = () => {
       .catch((err) => {
         console.log(err);
       });
-    console.log("clicked ", item);
+    //  console.log("clicked ", item);
   };
   return (
     <div>

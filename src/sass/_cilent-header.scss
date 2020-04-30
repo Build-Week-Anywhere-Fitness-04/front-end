@@ -28,12 +28,26 @@
 
   .client-center {
     //  border: 1px solid red;
-    width: 40%;
+    width: 1000px;
     text-align: center;
+    @media (max-width: $big-desktop) {
+      width: 800px;
+    }
+
+    @media (max-width: $laptop) {
+      width: 500px;
+    }
 
     h1 {
       font-size: 3rem;
       margin-bottom: 2rem;
+      @media (max-width: $desktop) {
+        font-size: 2.5rem;
+
+        @media (max-width: $laptop) {
+          font-size: 2rem;
+        }
+      }
     }
 
     p {
@@ -50,7 +64,7 @@
   form {
     input {
       display: inline-block;
-      width: 50%;
+      width: 800px;
       font-size: 1.1rem;
       padding: 0.7rem;
       border-radius: 5px;

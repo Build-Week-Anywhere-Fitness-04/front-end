@@ -10,15 +10,35 @@ const ClientProfile = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [update, setUpdate] = useState("");
+  const [clientName, setClientName] = useState({
+    first_name: "",
+    last_name: "",
+  });
   const reducer = useSelector((state) => state.clientReducer.classesJoined);
   //   console.log("checking classesd joined ", reducer);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`api/clients/${id}`)
+      .then((res) => {
+        //   console.log("client profile ", res);
+        const fullName = {
+          first_name: res.data.first_name,
+          last_name: res.data.last_name,
+        };
+        setClientName(fullName);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     dispatch({ type: "FETCHING_RERENDER_CLASSES" });
     axiosWithAuth()
       .get(`/api/clients/${id}/classes`)
       .then((res) => {
-        console.log("rerendering ".res);
+        //   console.log("rerendering ".res);
         dispatch({ type: "RERENDERING_JOINED_CLASSES", payload: res.data });
       })
       .catch((err) => {
@@ -28,10 +48,12 @@ const ClientProfile = () => {
   }, [update, dispatch, id]);
 
   const deletedJoined = (item) => {
+    //  console.log("clikecd", item);
+    const class_id = item.id;
     axiosWithAuth()
-      .delete(`api/clients/${id}/classes/${item.class_id}`)
+      .delete(`api/clients/${id}/classes/${class_id}`)
       .then((res) => {
-        console.log(res);
+        //   console.log(res);
         setUpdate(res.data);
       })
       .catch((err) => {
@@ -44,6 +66,7 @@ const ClientProfile = () => {
       <Sharednav />
       <div className="ClientProfile-wrapper">
         <div className="profile-icon">
+          <p>{`${clientName.first_name} ${clientName.last_name}`}</p>
           <RiAccountCircleLine />
         </div>
         <div className="flex">
