@@ -1,14 +1,12 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
+import { convertingTime } from "../../../helperFunctions/convertingTime";
 
 const InstructorCardClass = ({ cls, joinClass }) => {
   const { id, duration, image_url, name, price, start_time } = cls;
   const { url } = useRouteMatch();
 
-  const convert = new Date(start_time);
-  const t = convert.toLocaleTimeString().split(":");
-  const am = t.slice(-1)[0].split(" ")[1];
-  const time = `${t[0]}:${t[1]} ${am}`;
+  const time = convertingTime(start_time);
 
   return (
     <div className="InstructorCardClass">

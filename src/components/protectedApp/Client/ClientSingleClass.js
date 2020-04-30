@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { convertingTime } from "../../../helperFunctions/convertingTime";
 import Sharednav from "../Sharednav";
 
 const ClientSingleClass = () => {
@@ -23,13 +24,8 @@ const ClientSingleClass = () => {
     start_time,
     type,
   } = findClass;
-  //   console.log("finding class ", findClass);
 
-  //   console.log("class found ", findClass);
-
-  //   console.log("reucer", reducer);
-  //   console.log("url ", url, "path ", path);
-  //   console.log("params ", id);
+  const time = convertingTime(start_time);
   return (
     <div>
       <Sharednav />
@@ -62,7 +58,7 @@ const ClientSingleClass = () => {
               </p>
               <p className="start">
                 Starts at:
-                <span>{start_time}</span>
+                <span>{time}</span>
               </p>
               <p className="type">
                 Class type:

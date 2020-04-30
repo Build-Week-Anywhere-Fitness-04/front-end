@@ -60,23 +60,25 @@ export const clientReducer = (state = initialValues, action) => {
         error: action.payload,
       };
 
-    /// REMOVING JOINED CLASSES
-    case "REMOVING_JOINED_CLASS":
+    // FETCHING RERENDER CLASSES
+    case "FETCHING_RERENDER_CLASSES":
       return {
         ...state,
         loading: true,
       };
-    case "REMOVED_CLASS_SUCCESSFULLY":
+    case "RERENDERING_JOINED_CLASSES":
       return {
         ...state,
         loading: false,
+        classesJoined: action.payload,
       };
-    case "ERROR_REMOVING_CLASS":
+    case "ERROR_RERENDERING_JOINED_CLASSES":
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
+
     default:
       return state;
   }

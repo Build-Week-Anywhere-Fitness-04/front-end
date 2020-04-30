@@ -14,8 +14,18 @@ const ClientProfile = () => {
   //   console.log("checking classesd joined ", reducer);
 
   useEffect(() => {
-    setUpdate("");
-  }, [update, reducer]);
+    dispatch({ type: "FETCHING_RERENDER_CLASSES" });
+    axiosWithAuth()
+      .get(`/api/clients/${id}/classes`)
+      .then((res) => {
+        console.log("rerendering ".res);
+        dispatch({ type: "RERENDERING_JOINED_CLASSES", payload: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({ type: "ERROR_RERENDERING_JOINED_CLASSES", payload: err });
+      });
+  }, [update, dispatch, id]);
 
   const deletedJoined = (item) => {
     dispatch({ type: "REMOVING_JOINED_CLASS" });
@@ -25,7 +35,6 @@ const ClientProfile = () => {
         console.log(res);
         dispatch({ type: "REMOVED_CLASS_SUCCESSFULLY" });
         setUpdate(res.data);
-        console.log(update);
       })
       .catch((err) => {
         console.log(err);
