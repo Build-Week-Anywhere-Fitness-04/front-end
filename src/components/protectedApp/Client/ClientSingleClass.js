@@ -85,7 +85,7 @@ const ClientSingleClass = () => {
         </div>
       </div>
       <div className="googleMap-wrapper">
-        {/* <GoogleMap location={location} /> */}
+        <GoogleMap location={location} />
       </div>
     </div>
   );
