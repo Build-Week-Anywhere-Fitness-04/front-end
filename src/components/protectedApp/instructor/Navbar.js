@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [name, setName] = useState("");
+  ////
 
   useEffect(() => {
     const saveName = JSON.parse(localStorage.getItem("name"));
