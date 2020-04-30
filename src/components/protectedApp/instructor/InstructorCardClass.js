@@ -1,31 +1,15 @@
 import React from "react";
 import { Link, useRouteMatch, useHistory } from "react-router-dom";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+import { convertingTime } from "../../../helperFunctions/convertingTime";
 
 const InstructorCardClass = ({ clss, deleteClass }) => {
-  const {
-    id,
-    //  description,
-    duration,
-    image_url,
-    //  intensity,
-    //  location,
-    //  max_class_size,
-    name,
-    price,
-    start_time,
-    //  type,
-    //  status,
-  } = clss;
-  //   const match = useParams();
+  const { id, duration, image_url, name, price, start_time } = clss;
+
   const { url } = useRouteMatch();
   const history = useHistory();
-  //   console.log("match here ", match);
-  //   console.log("url ", url, "path ", path);
-  const convert = new Date(start_time);
-  const t = convert.toLocaleTimeString().split(":");
-  const am = t.slice(-1)[0].split(" ")[1];
-  const time = `${t[0]}:${t[1]} ${am}`;
+
+  const time = convertingTime(start_time);
   const editBtn = () => {
     history.push(`${url}/edit/${id}`);
   };

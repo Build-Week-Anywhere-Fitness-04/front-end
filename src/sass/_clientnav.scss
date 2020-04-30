@@ -16,6 +16,12 @@
     z-index: 100;
     color: #f4f4f4;
 
+    h1 {
+      @media (max-width: $med-desktop) {
+        font-size: 1.6rem;
+      }
+    }
+
     nav {
       a {
         text-decoration: none;
@@ -23,8 +29,12 @@
         color: #f4f4f4;
         font-size: 1.3rem;
         padding: 0.5rem;
+        @media (max-width: $med-desktop) {
+          font-size: 1rem;
+        }
         &:first-child {
           margin-right: 1rem;
+          color: $main-color;
         }
       }
     }
