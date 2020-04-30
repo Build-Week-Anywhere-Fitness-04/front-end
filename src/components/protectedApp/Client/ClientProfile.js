@@ -15,7 +15,7 @@ const ClientProfile = () => {
     last_name: "",
   });
   const reducer = useSelector((state) => state.clientReducer.classesJoined);
-
+  /// testing
   useEffect(() => {
     axiosWithAuth()
       .get(`api/clients/${id}`)
