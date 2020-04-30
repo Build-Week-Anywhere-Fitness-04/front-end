@@ -1,16 +1,11 @@
 .client-Header {
-  //   border: 1px solid red;
   height: 100vh;
-  display: flex;
+  @include flex(center);
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  //   margin-bottom: 5rem;
-  //   padding-bottom: 5rem;
   position: relative;
   background: rgba(0, 0, 0, 0.5);
   color: #f4f4f4;
-  //   z-index: 100;
 
   &::after {
     content: "";
@@ -21,13 +16,11 @@
     left: 0;
     background: url("../img/yoga1.jpg");
     background-size: cover;
-    //  background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
   }
 
   .client-center {
-    //  border: 1px solid red;
     width: 1000px;
     text-align: center;
     @media (max-width: $big-desktop) {
@@ -60,7 +53,6 @@
 }
 
 .SearchClassForm {
-  //   border: 1px solid red;
   form {
     input {
       display: inline-block;

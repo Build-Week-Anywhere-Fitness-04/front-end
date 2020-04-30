@@ -4,7 +4,6 @@
   font-size: 1.2rem;
 
   .wrapper-class {
-    //  border: 1px solid red;
     margin-bottom: 3rem;
 
     .InstructorSingleClass-wrapper {
@@ -27,18 +26,14 @@
       }
 
       .right-side {
-        //   border: 1px solid red;
         width: 30%;
         margin-left: 2rem;
-        display: flex;
+        @include flex(center);
         flex-direction: column;
-        justify-content: center;
-        //   align-items: center;
 
         p {
           margin: 0.5rem 0;
           font-weight: bold;
-          //  font-size: 1.1rem;
 
           span {
             font-weight: normal;
@@ -50,11 +45,9 @@
     }
 
     .bottom-description {
-      // border: 1px solid red;
       margin-bottom: 3rem;
 
       .InstructorSingleClass-description {
-        //   border: 1px solid blue;
         border-top: 1px solid grey;
         width: 80%;
         margin: 4rem auto 3rem;
@@ -78,12 +71,10 @@
       }
 
       .goback-btn {
-        display: flex;
-        justify-content: center;
+        @include flex(center);
         margin-bottom: 2rem;
 
         a {
-          //  border: 1px solid red;
           text-decoration: none;
           padding: 0.5rem 2rem;
           display: inline-block;
@@ -99,10 +90,6 @@
 
 // google maps
 .googleMap-wrapper {
-  //   border: 1px solid red;
-  //   height: 70vh;
-  //   margin-bottom: 3rem;
-  //   width: $main-width;
   margin: 0 auto 5rem;
 
   .icon {

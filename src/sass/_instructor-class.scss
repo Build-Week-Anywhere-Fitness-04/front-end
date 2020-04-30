@@ -1,12 +1,8 @@
 .DisplayInstructorClasses {
-  //   border: 1px solid red;
   width: $main-width;
   margin: 2rem auto 5rem;
-  display: flex;
+  @include flex(center);
   flex-wrap: wrap;
-
-  //   padding: 0.5rem;
-  justify-content: center;
 
   a {
     text-decoration: none;
@@ -17,17 +13,15 @@
   width: 510px;
   background: $white;
   border-radius: 5px;
-  //   border: 1px solid rgb(196, 191, 191);
-  //   margin: 0 auto;
+
   @media (max-width: $big-desktop) {
     width: 510px;
   }
   margin: 0 1rem 5rem;
+
   .InstructorCardClass-img {
-    //  width: 550px;
     img {
       width: 100%;
-      // border: 1px solid red;
       border-radius: 5px;
       height: 320px;
       object-fit: cover;
@@ -38,10 +32,7 @@
     padding: 0 0.5rem 1rem;
 
     .Instructor-top-row {
-      // border: 1px solid blue;
-      display: flex;
-      justify-content: space-between;
-      // align-items: center;
+      @include flex(space-between);
       padding: 0.8rem 0;
       font-size: 1.1rem;
 
@@ -62,9 +53,7 @@
     }
 
     .bottom-row {
-      display: flex;
-      justify-content: space-between;
-      // border: 1px solid red;
+      @include flex(space-between);
 
       .starts {
         color: $black;
@@ -77,18 +66,15 @@
       .icons {
         font-size: 1.2rem;
         display: flex;
-
         align-items: center;
 
         .edit {
           cursor: pointer;
           margin-right: 1rem;
-          //  border: 1px solid red;
           padding: 0.2rem;
         }
         .del {
           cursor: pointer;
-          //  border: 1px solid red;
           padding: 0.2rem;
         }
       }

@@ -1,16 +1,11 @@
 .instructor-Header {
-  //   border: 1px solid red;
   height: 75vh;
-  display: flex;
+  @include flex(center);
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  //   margin-bottom: 5rem;
-  //   padding-bottom: 5rem;
   position: relative;
   background: rgba(0, 0, 0, 0.5);
-  color: #f4f4f4;
-  //   z-index: 100;
+  color: $white;
 
   &::after {
     content: "";
@@ -44,7 +39,6 @@
 }
 
 .SearchClassForm {
-  //   border: 1px solid red;
   form {
     input {
       display: inline-block;

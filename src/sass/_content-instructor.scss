@@ -1,6 +1,5 @@
 .Content {
-  //   border: 1px solid red;
-  width: 87%;
+  width: $main-width;
   margin: 6rem auto;
 
   h3 {
@@ -19,7 +18,6 @@
   height: 30vh;
   display: flex;
   @media (max-width: $med-desktop) {
-    //  border: 1px solid red;
     height: 40vh;
   }
 
