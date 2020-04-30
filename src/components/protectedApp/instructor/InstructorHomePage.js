@@ -15,16 +15,12 @@ const InstructionHomePage = () => {
     ...state,
   }));
   const { instructorClass, instructorName } = reducer.userReducer;
-  //   console.log("reducer here", instructorID);
-
-  //   console.log("name", instructorName);
 
   useEffect(() => {
     dispatch({ type: "FETCHING_INSTRUCTOR_CLASSES" });
     axiosWithAuth()
       .get(`/api/instructors/${id}/classes`)
       .then((res) => {
-        //   console.log("response here ", res);
         dispatch({ type: "GETTING_INSTRUCTOR_CLASSES", payload: res.data });
       })
       .catch((err) => {
@@ -38,7 +34,6 @@ const InstructionHomePage = () => {
     axiosWithAuth()
       .get(`api/instructors/${id}`)
       .then((res) => {
-        //   console.log("instructor information ", res);
         localStorage.setItem("name", JSON.stringify(res.data.first_name));
         dispatch({
           type: "SAVE_INSTRUCTOR_NAME",
@@ -54,12 +49,10 @@ const InstructionHomePage = () => {
   //   DELETE /api/instructors/:id/classes/:class_id
 
   const deleteClass = (item) => {
-    //  console.log("clicked class ", item);
     dispatch({ type: "REMOVING_CLASS" });
     axiosWithAuth()
       .delete(`/api/instructors/${id}/classes/${item.id}`)
       .then((res) => {
-        //   console.log("res from deleting..", res);
         dispatch({ type: "REMOVED_CLASS" });
         setUpdateData(res.data);
       })

@@ -25,6 +25,10 @@
   background: $main-color;
   color: $white;
   cursor: pointer;
+  transition: background 0.3s ease;
+  &:hover {
+    background: lighten($main-color, 10%);
+  }
 }
 
 .added {

@@ -6,9 +6,6 @@ import Navbar from "./Navbar";
 import Header from "./Header";
 import ClientDisplayClasses from "./ClientDisplayClasses";
 
-/// fix routers bugs
-// fix rerendering bug,
-// work on styles
 // toggle class for joined client
 
 const ClientHomePage = () => {
@@ -18,13 +15,12 @@ const ClientHomePage = () => {
     ...state,
   }));
   const { allClasses, classesJoined } = reducer.clientReducer;
-  //   console.log("reducer here", reducer.clientReducer);
+
   useEffect(() => {
     dispatch({ type: "FETCHING_CLIENT_CLASSES" });
     axiosWithAuth()
       .get(`/api/classes`)
       .then((res) => {
-        //   console.log(res);
         dispatch({ type: "SAVING_CLIENT_CLASSES", payload: res.data });
       })
       .catch((err) => {
@@ -38,7 +34,6 @@ const ClientHomePage = () => {
     axiosWithAuth()
       .get(`/api/clients/${id}/classes`)
       .then((res) => {
-        //   console.log(res);
         dispatch({ type: "SAVING_JOINED_CLASSES", payload: res.data });
       })
       .catch((err) => {
@@ -52,13 +47,11 @@ const ClientHomePage = () => {
     axiosWithAuth()
       .post(`/api/clients/${id}/classes`, { class_id })
       .then((res) => {
-        //   console.log(res);
         dispatch({ type: "CLIENT_JOINED_CLASS" });
       })
       .catch((err) => {
         console.log(err);
       });
-    //  console.log("clicked ", item);
   };
   return (
     <div>

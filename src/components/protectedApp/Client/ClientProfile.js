@@ -15,13 +15,11 @@ const ClientProfile = () => {
     last_name: "",
   });
   const reducer = useSelector((state) => state.clientReducer.classesJoined);
-  //   console.log("checking classesd joined ", reducer);
 
   useEffect(() => {
     axiosWithAuth()
       .get(`api/clients/${id}`)
       .then((res) => {
-        //   console.log("client profile ", res);
         const fullName = {
           first_name: res.data.first_name,
           last_name: res.data.last_name,
@@ -38,7 +36,6 @@ const ClientProfile = () => {
     axiosWithAuth()
       .get(`/api/clients/${id}/classes`)
       .then((res) => {
-        //   console.log("rerendering ".res);
         dispatch({ type: "RERENDERING_JOINED_CLASSES", payload: res.data });
       })
       .catch((err) => {
@@ -48,12 +45,10 @@ const ClientProfile = () => {
   }, [update, dispatch, id]);
 
   const deletedJoined = (item) => {
-    //  console.log("clikecd", item);
     const class_id = item.id;
     axiosWithAuth()
       .delete(`api/clients/${id}/classes/${class_id}`)
       .then((res) => {
-        //   console.log(res);
         setUpdate(res.data);
       })
       .catch((err) => {

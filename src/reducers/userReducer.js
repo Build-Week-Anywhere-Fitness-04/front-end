@@ -4,7 +4,6 @@ import { initialValues } from "./initialValues";
 export const userReducer = (state = initialValues, action) => {
   switch (action.type) {
     case "SAVE_INSTRUCTOR_ID":
-      // const id = JSON.parse(localStorage.getItem("id"));
       return {
         ...state,
         instructorID: action.payload,

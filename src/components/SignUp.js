@@ -254,7 +254,7 @@ function SignUp() {
           </button>
 
           <Recaptcha
-            sitekey="6LcNQe4UAAAAAPvA7WyuFmuxOuLWn7dU9k4Gez3v"
+            sitekey={API_KEY}
             render="explicit"
             onloadCallback={recaptchaLoaded}
             verifyCallback={verifyCallback}

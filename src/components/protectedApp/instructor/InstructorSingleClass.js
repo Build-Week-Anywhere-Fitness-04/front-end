@@ -5,7 +5,6 @@ import Sharednav from "../Sharednav";
 import { convertingTime } from "../../../helperFunctions/convertingTime";
 
 const InstructorSingleClass = () => {
-  //   const { url, path } = useRouteMatch();
   const { c_id } = useParams();
   const reducer = useSelector((state) => ({
     ...state,
@@ -16,7 +15,6 @@ const InstructorSingleClass = () => {
   );
 
   const {
-    //  id,
     instructor_id,
     description,
     duration,
