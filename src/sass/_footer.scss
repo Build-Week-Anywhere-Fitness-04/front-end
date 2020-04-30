@@ -1,12 +1,12 @@
 .Footer {
   height: 15vh;
-  background: #333;
+  background: $black;
   color: $white;
   align-items: center;
   padding: 1rem 0;
 
   footer {
-    width: 87%;
+    width: $main-width;
     margin: 0 auto;
     text-align: center;
 

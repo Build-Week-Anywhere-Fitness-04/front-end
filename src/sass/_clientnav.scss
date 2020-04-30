@@ -1,8 +1,6 @@
 .Navbar {
   .Navbar-container {
-    //  border: 1px solid red;
-    display: flex;
-    justify-content: space-between;
+    @include flex(space-between);
     width: 87%;
     margin: 0 auto;
     height: 7vh;
@@ -14,7 +12,7 @@
     left: 0;
     right: 0;
     z-index: 100;
-    color: #f4f4f4;
+    color: $white;
 
     h1 {
       @media (max-width: $med-desktop) {
@@ -25,8 +23,7 @@
     nav {
       a {
         text-decoration: none;
-        //   border: 1px solid red;
-        color: #f4f4f4;
+        color: $white;
         font-size: 1.3rem;
         padding: 0.5rem;
         @media (max-width: $med-desktop) {
