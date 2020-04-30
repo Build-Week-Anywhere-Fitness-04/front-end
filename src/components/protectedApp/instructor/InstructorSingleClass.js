@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Sharednav from "../Sharednav";
+import { convertingTime } from "../../../helperFunctions/convertingTime";
 
 const InstructorSingleClass = () => {
   //   const { url, path } = useRouteMatch();
@@ -30,11 +31,7 @@ const InstructorSingleClass = () => {
     //  status,
   } = findClass;
 
-  //   console.log("class found ", findClass);
-
-  //   console.log("reucer", reducer);
-  //   console.log("url ", url, "path ", path);
-  //   console.log("params ", c_id);
+  const time = convertingTime(start_time);
   return (
     <div>
       <Sharednav />
@@ -67,7 +64,7 @@ const InstructorSingleClass = () => {
               </p>
               <p className="start">
                 Starts at:
-                <span>{start_time}</span>
+                <span>{time}</span>
               </p>
               <p className="type">
                 Class type:
