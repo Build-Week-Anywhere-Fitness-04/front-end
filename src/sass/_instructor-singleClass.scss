@@ -85,3 +85,17 @@
     }
   }
 }
+
+// google maps
+.googleMap-wrapper {
+  //   border: 1px solid red;
+  //   height: 70vh;
+  //   margin-bottom: 3rem;
+  width: $main-width;
+  margin: 0 auto 5rem;
+
+  .icon {
+    color: red;
+    font-size: 2rem;
+  }
+}

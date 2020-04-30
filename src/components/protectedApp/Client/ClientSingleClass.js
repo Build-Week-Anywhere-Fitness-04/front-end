@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { convertingTime } from "../../../helperFunctions/convertingTime";
 import Sharednav from "../Sharednav";
+import GoogleMap from "../googleMap";
 
 const ClientSingleClass = () => {
   const { id, c_id } = useParams();
@@ -82,6 +83,9 @@ const ClientSingleClass = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="googleMap-wrapper">
+        {/* <GoogleMap location={location} /> */}
       </div>
     </div>
   );
