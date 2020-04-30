@@ -16,7 +16,13 @@ const SearchClassForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const filtered = reducer.filter((cla) => cla.type.includes(value));
+    const filtered = reducer.filter(
+      (cla) =>
+        cla.type.includes(value) ||
+        cla.name.includes(value) ||
+        cla.start_time.includes(value) ||
+        cla.location.includes(value)
+    );
     dispatch({ type: "ADDING_SEARCH_CLASSES", payload: filtered });
     history.push(`${url}/${value}/results`);
     setValue("");

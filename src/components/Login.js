@@ -89,7 +89,7 @@ function Login() {
           history.push(`/account/instructor/${res.data.id}`);
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data.errorMessage);
         });
     } else {
       axiosWithAuth()
