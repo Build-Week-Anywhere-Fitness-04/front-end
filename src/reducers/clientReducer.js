@@ -34,7 +34,6 @@ export const clientReducer = (state = initialValues, action) => {
 
     // client join class
     case "CLIENT_JOINED_CLASS":
-      console.log("here is the toggle ", state.joinedClass);
       return {
         ...state,
         joinedClass: !state.joinedClass,

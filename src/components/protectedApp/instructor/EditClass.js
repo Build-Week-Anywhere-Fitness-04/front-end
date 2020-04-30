@@ -53,7 +53,6 @@ const EditClass = () => {
     axiosWithAuth()
       .get(`/api/instructors/${id}/classes/${c_id}`)
       .then((res) => {
-        //   console.log(res);
         setClasse(res.data);
       })
       .catch((err) => {
@@ -70,12 +69,9 @@ const EditClass = () => {
     axios
       .post(`https://api.cloudinary.com/v1_1/dedps0vtx/image/upload`, formData)
       .then((res) => {
-        //   console.log(res);
         setImg(res.data.secure_url);
       })
       .catch((err) => [console.log(err)]);
-
-    //   console.log("params here ", params);
   };
 
   const handleTimeChange = (date) => {
@@ -92,8 +88,6 @@ const EditClass = () => {
       ...classe,
       [e.target.name]: newObj,
     });
-
-    //  console.log(e.target.value);
   };
 
   const submitNewValues = (e) => {
@@ -129,14 +123,11 @@ const EditClass = () => {
     axiosWithAuth()
       .put(`/api/instructors/${id}/classes/${c_id}`, newValues)
       .then((res) => {
-        //   console.log("new values from edit ", res);
         history.push(`/account/instructor/${id}`);
       })
       .catch((err) => {
         console.log(err);
       });
-
-    //  console.log("edit function here ", newValues);
   };
 
   return (
@@ -149,7 +140,6 @@ const EditClass = () => {
             id="name"
             name="name"
             placeholder="class name"
-            // as={TextField}
             value={classe.name}
             onChange={handleValueChange}
           />
@@ -160,7 +150,6 @@ const EditClass = () => {
             id="type"
             name="type"
             placeholder="class type"
-            // as={TextField}
             value={classe.type}
             onChange={handleValueChange}
           />
@@ -171,7 +160,6 @@ const EditClass = () => {
             id="location"
             name="location"
             placeholder="class location"
-            // as={TextField}
             value={classe.location}
             onChange={handleValueChange}
           />
@@ -182,7 +170,6 @@ const EditClass = () => {
             id="intensity"
             name="intensity"
             placeholder="class intensity"
-            // as={TextField}
             value={classe.intensity}
             onChange={handleValueChange}
           />
@@ -193,7 +180,6 @@ const EditClass = () => {
             id="status"
             name="status"
             placeholder="class status 'optional' "
-            // as={TextField}
             value={classe.status}
             onChange={handleValueChange}
           />
@@ -204,7 +190,6 @@ const EditClass = () => {
             id="price"
             name="price"
             placeholder="class price"
-            // as={TextField}
             value={classe.price}
             onChange={handleValueChange}
           />
@@ -215,7 +200,6 @@ const EditClass = () => {
             id="duration"
             name="duration"
             placeholder="class duration"
-            // as={TextField}
             value={classe.duration}
             onChange={handleValueChange}
           />
@@ -226,7 +210,6 @@ const EditClass = () => {
             id="max_class_size"
             name="max_class_size"
             placeholder="max class size"
-            // as={TextField}
             value={classe.max_class_size}
             onChange={handleValueChange}
           />
@@ -237,7 +220,6 @@ const EditClass = () => {
             id="description"
             name="description"
             placeholder="desctioption of class"
-            // as={TextField}
             value={classe.description}
             onChange={handleValueChange}
           />
@@ -247,7 +229,6 @@ const EditClass = () => {
           type="file"
           name="file"
           onChange={uploadImage}
-          //  as={TextField}
         />
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardTimePicker

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
-import * as yup from "yup";
+// import * as yup from "yup";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -119,7 +119,6 @@ const AddClassesForm = ({ setUpdateData }) => {
             description,
             image_url: img,
           };
-          //  console.log(newValues);
 
           axiosWithAuth()
             .post(`/api/instructors/${instructorID}/classes`, newValues)
@@ -157,7 +156,7 @@ const AddClassesForm = ({ setUpdateData }) => {
                 type="text"
                 id="location"
                 name="location"
-                placeholder="class location"
+                placeholder="class address"
                 as={TextField}
               />
             </label>

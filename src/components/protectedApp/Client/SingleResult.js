@@ -1,26 +1,13 @@
 import React from "react";
-import { Link, useRouteMatch, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useRouteMatch } from "react-router-dom";
+import { convertingTime } from "../../../helperFunctions/convertingTime";
 
 const SingleResult = ({ cls, joinClass }) => {
   const { id, duration, image_url, name, price, start_time } = cls;
   const { url } = useRouteMatch();
-  const params = useParams();
-  const reducer = useSelector((state) => state.clientReducer);
 
-  console.log("checking reducer ", reducer);
-  //   console.log("aprams ", params);
+  const time = convertingTime(start_time);
 
-  const convert = new Date(start_time);
-  const t = convert.toLocaleTimeString().split(":");
-  const am = t.slice(-1)[0].split(" ")[1];
-  const time = `${t[0]}:${t[1]} ${am}`;
-
-  // search
-  //   const newUrl = `/account/client/${params.id}`;
-  // /account/client / 5 / yoga / results
-  // /account/client / 5 / 8 / more - info
-  //   console.log("url hrer", url);
   return (
     <div className="InstructorCardClass">
       <Link to={`/${url}/${id}/more-info`}>

@@ -1,15 +1,11 @@
 import React from "react";
-import { Link, useRouteMatch, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 
 const ClientJoined = ({ cls, deletedJoined }) => {
   const { id, image_url } = cls;
-  const { url } = useRouteMatch();
   const params = useParams();
-  console.log("parms here ", params);
 
-  //   /account/client/5/8/more-info   expencting
-  //  /account/ceilnt/8/more-info    current
   return (
     <div className="InstructorCardClass">
       <Link to={`/account/client/${params.id}/${id}/more-info`}>

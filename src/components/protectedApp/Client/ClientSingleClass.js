@@ -27,6 +27,13 @@ const ClientSingleClass = () => {
   } = findClass;
 
   const time = convertingTime(start_time);
+  //   const have = start_time.split("T");
+  //   const convert = new Date(have[1]);
+  //   const t = convert.toLocaleTimeString().split(":");
+  //   const am = t.slice(-1)[0].split(" ")[1];
+  //   const times = `${t[0]}:${t[1]} ${am}`;
+  //   console.log("times ", start_time);
+  //   const time = "";
   return (
     <div>
       <Sharednav />
@@ -59,7 +66,7 @@ const ClientSingleClass = () => {
               </p>
               <p className="start">
                 Starts at:
-                <span>{time}</span>
+                <span>{time && "0"}</span>
               </p>
               <p className="type">
                 Class type:
