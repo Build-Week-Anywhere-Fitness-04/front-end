@@ -28,17 +28,14 @@ const ClientProfile = () => {
   }, [update, dispatch, id]);
 
   const deletedJoined = (item) => {
-    dispatch({ type: "REMOVING_JOINED_CLASS" });
     axiosWithAuth()
       .delete(`api/clients/${id}/classes/${item.class_id}`)
       .then((res) => {
         console.log(res);
-        dispatch({ type: "REMOVED_CLASS_SUCCESSFULLY" });
         setUpdate(res.data);
       })
       .catch((err) => {
         console.log(err);
-        dispatch({ type: "ERROR_REMOVING_CLASS", payload: err });
       });
   };
 
