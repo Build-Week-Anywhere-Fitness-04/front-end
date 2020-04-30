@@ -6,13 +6,18 @@ import Navbar from "./Navbar";
 import Header from "./Header";
 import ClientDisplayClasses from "./ClientDisplayClasses";
 
+/// fix routers bugs
+// fix rerendering bug,
+// work on styles
+// toggle class for joined client
+
 const ClientHomePage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const reducer = useSelector((state) => ({
     ...state,
   }));
-  const { allClasses } = reducer.clientReducer;
+  const { allClasses, classesJoined } = reducer.clientReducer;
   //   console.log("reducer here", reducer.clientReducer);
   useEffect(() => {
     dispatch({ type: "FETCHING_CLIENT_CLASSES" });
@@ -26,7 +31,7 @@ const ClientHomePage = () => {
         console.log(err);
         dispatch({ type: "SAVING_ERROR", payload: err });
       });
-  }, [dispatch]);
+  }, [dispatch, classesJoined]);
 
   useEffect(() => {
     dispatch({ type: "FETCHING_CLASSES_JOINED" });
