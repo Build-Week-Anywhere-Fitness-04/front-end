@@ -39,6 +39,7 @@ const InstructionHomePage = () => {
       .get(`api/instructors/${id}`)
       .then((res) => {
         //   console.log("instructor information ", res);
+        localStorage.setItem("name", JSON.stringify(res.data.first_name));
         dispatch({
           type: "SAVE_INSTRUCTOR_NAME",
           payload: res.data.first_name,
@@ -71,7 +72,10 @@ const InstructionHomePage = () => {
   return (
     <div>
       <InstructorHeader name={instructorName} />
-      <InstructorContent setUpdateData={setUpdateData} />
+      <InstructorContent
+        setUpdateData={setUpdateData}
+        instructorClass={instructorClass}
+      />
       <DisplayInstructorsClasses
         classes={instructorClass}
         deleteClass={deleteClass}

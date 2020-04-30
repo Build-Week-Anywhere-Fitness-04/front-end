@@ -6,7 +6,7 @@
   flex-wrap: wrap;
 
   //   padding: 0.5rem;
-  //   justify-content: center;
+  justify-content: center;
 
   a {
     text-decoration: none;
@@ -14,11 +14,14 @@
 }
 
 .InstructorCardClass {
-  width: 520px;
+  width: 510px;
   background: $white;
   border-radius: 5px;
   //   border: 1px solid rgb(196, 191, 191);
   //   margin: 0 auto;
+  @media (max-width: $big-desktop) {
+    width: 510px;
+  }
   margin: 0 1rem 5rem;
   .InstructorCardClass-img {
     //  width: 550px;

@@ -18,6 +18,10 @@
   width: 80%;
   height: 30vh;
   display: flex;
+  @media (max-width: $med-desktop) {
+    //  border: 1px solid red;
+    height: 40vh;
+  }
 
   align-items: center;
   margin: 5rem auto;

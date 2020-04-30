@@ -22,18 +22,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const validationSchema = yup.object().shape({
-  name: yup.string().required("Field required"),
-  type: yup.string().required("Field require"),
-  start_time: yup.string().required("Field required"),
-  status: yup.string(),
-  intensity: yup.number().required("Field required"),
-  //  .max(5, "canoot be longer than that"),
-  price: yup.number().required("Field required"),
-  duration: yup.number().required("Field required"),
-  max_class_size: yup.number().required("Field required"),
-  description: yup.string().required("Field required"),
-});
+// const validationSchema = yup.object().shape({
+//   name: yup.string().required("Field required"),
+//   type: yup.string().required("Field require"),
+//   start_time: yup.string().required("Field required"),
+//   status: yup.string(),
+//   intensity: yup.number().required("Field required"),
+//   price: yup.number().required("Field required"),
+//   duration: yup.number().required("Field required"),
+//   max_class_size: yup.number().required("Field required"),
+//   description: yup.string().required("Field required"),
+// });
 
 const getTime = new Date().toLocaleDateString();
 
@@ -47,27 +46,21 @@ const AddClassesForm = ({ setUpdateData }) => {
 
   useEffect(() => {
     const id = JSON.parse(localStorage.getItem("id"));
-    //  console.log(id);
     if (id) {
       dispatch({ type: "SAVE_INSTRUCTOR_ID", payload: id });
     }
   }, [dispatch]);
 
   const { instructorID } = reducer.userReducer;
-  //   console.log("instructor here ", instructorID);
 
   const [img, setImg] = useState("");
   const classes = useStyles();
 
   const handleTimeChange = (date) => {
-    //  console.log(newTime);
-
     setSelectedTime(date);
   };
   const handleDateChange = (date) => {
     setSelectedDate(date.toLocaleDateString());
-    //  console.log(date.toLocaleDateString());
-    //   new Date().getDate()
   };
 
   const uploadImage = (e) => {
@@ -79,7 +72,6 @@ const AddClassesForm = ({ setUpdateData }) => {
     axios
       .post(`https://api.cloudinary.com/v1_1/dedps0vtx/image/upload`, formData)
       .then((res) => {
-        //   console.log(res);
         setImg(res.data.secure_url);
       })
       .catch((err) => [console.log(err)]);
@@ -100,6 +92,7 @@ const AddClassesForm = ({ setUpdateData }) => {
           max_class_size: "",
           description: "",
         }}
+        //   validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
           const datesFormatted = `${selectedDate} ${selectedTime.toLocaleTimeString()}`;
           const {
@@ -131,7 +124,6 @@ const AddClassesForm = ({ setUpdateData }) => {
           axiosWithAuth()
             .post(`/api/instructors/${instructorID}/classes`, newValues)
             .then((res) => {
-              //   console.log("class added", res);
               setUpdateData(res.data);
             })
             .catch((err) => {

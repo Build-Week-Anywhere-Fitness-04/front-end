@@ -22,6 +22,9 @@
         text-decoration: none;
         //   border: 1px solid red;
         color: $black;
+        @media (max-width: $med-desktop) {
+          font-size: 1rem;
+        }
 
         font-size: 1.3rem;
         padding: 0.5rem;
