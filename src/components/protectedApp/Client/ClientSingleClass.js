@@ -66,7 +66,7 @@ const ClientSingleClass = () => {
               </p>
               <p className="start">
                 Starts at:
-                <span>{time && "0"}</span>
+                <span>{time}</span>
               </p>
               <p className="type">
                 Class type:

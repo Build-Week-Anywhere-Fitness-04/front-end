@@ -43,6 +43,7 @@ const ClientHomePage = () => {
   }, [dispatch, id]);
 
   const joinClass = (item) => {
+    //  console.log("here ", item);
     const class_id = item.id;
     axiosWithAuth()
       .post(`/api/clients/${id}/classes`, { class_id })
