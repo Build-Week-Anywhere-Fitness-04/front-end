@@ -34,9 +34,10 @@ export const clientReducer = (state = initialValues, action) => {
 
     // client join class
     case "CLIENT_JOINED_CLASS":
+      console.log("here is the toggle ", state.joinedClass);
       return {
         ...state,
-        joinedClass: true,
+        joinedClass: !state.joinedClass,
       };
 
     //  .get(`/api/clients/${id}/classes`)
@@ -53,6 +54,24 @@ export const clientReducer = (state = initialValues, action) => {
         classesJoined: action.payload,
       };
     case "ERROR_SAVING_JOINED_CLASSES":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    /// REMOVING JOINED CLASSES
+    case "REMOVING_JOINED_CLASS":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "REMOVED_CLASS_SUCCESSFULLY":
+      return {
+        ...state,
+        loading: false,
+      };
+    case "ERROR_REMOVING_CLASS":
       return {
         ...state,
         loading: false,
