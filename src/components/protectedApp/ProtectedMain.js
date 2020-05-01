@@ -8,6 +8,8 @@ import InstructorSingleClass from "./instructor/InstructorSingleClass";
 import ClientSingleClass from "./Client/ClientSingleClass";
 import EditClass from "./instructor/EditClass";
 
+import InstructorProfile from "./instructor/InstructorProfile";
+
 const ProtectedMain = () => {
   const { url } = useRouteMatch();
 
@@ -28,6 +30,10 @@ const ProtectedMain = () => {
 
       <Route exact path="/account/instructor/:id">
         <InstructorHomePage />
+      </Route>
+
+      <Route exact path={`${url}/instructor/:id/profile`}>
+        <InstructorProfile />
       </Route>
 
       <Route exact path={`${url}/instructor/:id/:c_id/more-info`}>

@@ -6,6 +6,8 @@ import Navbar from "./Navbar";
 import Header from "./Header";
 import ClientDisplayClasses from "./ClientDisplayClasses";
 
+import MainStripe from "../stripe/MainStripe";
+
 // toggle class for joined client
 
 const ClientHomePage = () => {
@@ -59,6 +61,7 @@ const ClientHomePage = () => {
       <Navbar />
       <Header />
       <ClientDisplayClasses allClasses={allClasses} joinClass={joinClass} />
+      <MainStripe />
     </div>
   );
 };
