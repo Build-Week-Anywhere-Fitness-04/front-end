@@ -25,9 +25,6 @@ const InstructorCardClass = ({ cls, joinClass }) => {
         </p>
         <div className="bottom-row">
           <p className="starts">{time}</p>
-          <div id="join" onClick={joinClass}>
-            join
-          </div>
         </div>
       </div>
     </div>

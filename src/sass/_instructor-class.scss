@@ -30,6 +30,7 @@
 
   .InstructorCardClass-description {
     padding: 0 0.5rem 1rem;
+    text-transform: capitalize;
 
     .Instructor-top-row {
       @include flex(space-between);

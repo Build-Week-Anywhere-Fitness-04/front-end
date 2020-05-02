@@ -8,6 +8,31 @@ export const userReducer = (state = initialValues, action) => {
         ...state,
         instructorID: action.payload,
       };
+    ///// ===>
+    case "FETCHING_ADDING_CLASSES":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "ADDED_CLASS_SUCCESSFULLY":
+      return {
+        ...state,
+        loading: false,
+        addClassSuccessfull: true,
+      };
+    case "ERROR_ADDING_CLASS":
+      return {
+        ...state,
+        loading: false,
+      };
+
+    case "HIDE_ADD_SUCCESSFULL_MESSAGE":
+      return {
+        ...state,
+        addClassSuccessfull: false,
+      };
+
+    //////// <========
 
     // FROM instructorHomePage.js
     case "FETCHING_INSTRUCTOR_CLASSES":
