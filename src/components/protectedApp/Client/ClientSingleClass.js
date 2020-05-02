@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { convertingTime } from "../../../helperFunctions/convertingTime";
 import Sharednav from "../Sharednav";
 import GoogleMap from "../googleMap";
+import ClientModel from "./ClientModel";
 
 const ClientSingleClass = () => {
   const { id, c_id } = useParams();
@@ -76,6 +77,9 @@ const ClientSingleClass = () => {
                 Class duration:
                 <span>{duration} mins</span>
               </p>
+              <div id="buy-btn">
+                <ClientModel data={findClass} />
+              </div>
             </div>
           </div>
           <div className="bottom-description">

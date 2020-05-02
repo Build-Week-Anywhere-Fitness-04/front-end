@@ -73,7 +73,9 @@ export default function CheckoutForm() {
   return (
     <form onSubmit={handleSubmit}>
       <CardSection />
-      <button disabled={!stripe}>Confirm order</button>
+      <button disabled={!stripe} className="confirm-btn">
+        Confirm order
+      </button>
     </form>
   );
 }

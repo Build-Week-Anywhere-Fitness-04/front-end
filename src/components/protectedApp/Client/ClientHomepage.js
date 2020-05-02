@@ -61,7 +61,6 @@ const ClientHomePage = () => {
       <Navbar />
       <Header />
       <ClientDisplayClasses allClasses={allClasses} joinClass={joinClass} />
-      <MainStripe />
     </div>
   );
 };
